@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - 'factorypulse_experiment_v1/run_g4_extended.py'
+      - 'factorypulse_experiment_v1/audit_schedules.py'
+      - 'factorypulse_experiment_v1/tests/test_schedule_audit.py'
       - 'factorypulse_experiment_v1/check_extended_integrity.py'
       - 'factorypulse_experiment_v1/fetch_public_instances.py'
       - 'factorypulse_experiment_v1/src/g4_extended*.py'
@@ -38,6 +40,11 @@ jobs:
           python check_extended_integrity.py --prefix results/g4_extended_mk01
           python check_extended_integrity.py --prefix results/g4_extended_mk02
           python check_extended_integrity.py --prefix results/g4_extended_mk03
+      - name: Independent full-schedule audit of all three instances
+        run: |
+          python audit_schedules.py --raw results/g4_extended_mk01.json --data data/mk01.txt
+          python audit_schedules.py --raw results/g4_extended_mk02.json --data data/mk02.txt
+          python audit_schedules.py --raw results/g4_extended_mk03.json --data data/mk03.txt
       - name: Upload all raw evidence even on failure
         uses: actions/upload-artifact@v4
         if: always()

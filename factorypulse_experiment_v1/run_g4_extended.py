@@ -22,6 +22,7 @@ def _arm(inst,origin,base,case_id,event,time_limit,seed):
         start=time.perf_counter();minimal=minimal_repair(state);t1=time.perf_counter()-start
         err1=validate_counterfactual(inst,base,event,minimal)
         row['C0_makespan']=makespan(base);row['C1_makespan']=makespan(minimal)
+        row['C1_schedule']=minimal
         row['C1']={'valid':err1==[],'validation_errors':err1,'elapsed_s':t1}
         if err1:raise AssertionError('C1 invalid '+str(err1))
         try:
@@ -36,6 +37,7 @@ def _arm(inst,origin,base,case_id,event,time_limit,seed):
         errors=validate_counterfactual(inst,base,event,optimized)
         row['validator_errors']=errors
         row['C2_makespan']=makespan(optimized)
+        row['C2_schedule']=optimized
         row['C2_changes']=policy_change_counts(base,optimized,state)
         row['metrics']=paired_metrics(row['C0_makespan'],row['C1_makespan'],row['C2_makespan'])
         row['gap']=solver_gap(solver.get('status'),solver.get('makespan'),solver.get('best_bound'))
@@ -89,7 +91,7 @@ def main():
          'seed':args.seed,'time_limit_s':args.time_limit,'static_limit_s':args.static_limit,
          'python':platform.python_version(),'platform':platform.platform(),
          'protocol':'G4 Extended v1, events generated from heuristic t/m/d and applied unchanged to both origin schedules',
-         'C0H':{'makespan':makespan(heur),'valid':True},'C0O':{'record':static,'valid':static_valid},
+         'C0H':{'makespan':makespan(heur),'valid':True,'schedule':heur},'C0O':{'record':static,'valid':static_valid,'schedule':opt if static_valid else None},
          'C0_global_gain':makespan(heur)-makespan(opt) if static_valid else None,
          'arms':[],'warnings':[]}
     if not static_valid:run['warnings'].append('Optimized-origin arm unavailable: static CP-SAT not validated; retained as failure, not silently dropped')
@@ -101,7 +103,9 @@ def main():
                 run['arms'].append({'origin':origin,'case_id':idx,'event':e,'status':'NO_SOLUTION','solver':{'status':'UNKNOWN'},'error':'C0O missing/invalid','validator_errors':None})
                 continue
             e['affects_plan']=any(s['machine']==e['machine'] and s['end']>e['time'] and s['start']<e['time']+e['duration'] for s in base)
-            run['arms'].append(_arm(inst,origin,base,idx,e,args.time_limit,args.seed))
+            rec=_arm(inst,origin,base,idx,e,args.time_limit,args.seed)
+            rec['C0_schedule']=base
+            run['arms'].append(rec)
     bad=[dict(origin=r['origin'],case_id=r['case_id'],issues=independently_check_record(r)) for r in run['arms'] if independently_check_record(r)]
     run['consistency_errors']=bad
     prefix=Path(args.out_prefix);prefix.parent.mkdir(parents=True,exist_ok=True)
