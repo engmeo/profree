@@ -1,0 +1,30 @@
+name: Research integrity and CP-SAT smoke
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'run_experiment.py'
+      - 'requirements.txt'
+      - 'data/**'
+      - '.github/workflows/experiment.yml'
+  pull_request:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements.txt
+      - run: python -m unittest discover -s tests -v
+      - run: python run_experiment.py --data data/mk01.txt --with-cpsat --limit 3 --out results/cpsat_ci_smoke.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cp-sat-smoke-${{ github.run_id }}
+          path: results/cpsat_ci_smoke.json
+          if-no-files-found: warn

@@ -1,0 +1,558 @@
+{
+  "scope": "synthetic machine downtime applied to public mk01 FJSP instance; not DENSO data",
+  "data_sha256": "449ada8093e03a84bf2255fa2a1673ccbc80cce7b82e855c5216533a330751ff",
+  "python": "3.13.5",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "base_makespan": 57,
+  "cp_sat_executed": false,
+  "cases": [
+    {
+      "case_id": 0,
+      "event": {
+        "time": 14,
+        "machine": 0,
+        "duration": 5,
+        "affects_plan": true
+      },
+      "B1": {
+        "makespan": 57,
+        "valid": true,
+        "wall_s": 0.001962276000000429,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 1,
+      "event": {
+        "time": 14,
+        "machine": 0,
+        "duration": 15,
+        "affects_plan": true
+      },
+      "B1": {
+        "makespan": 56,
+        "valid": true,
+        "wall_s": 0.0005198839999991378,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 2,
+      "event": {
+        "time": 14,
+        "machine": 1,
+        "duration": 5,
+        "affects_plan": true
+      },
+      "B1": {
+        "makespan": 68,
+        "valid": true,
+        "wall_s": 0.00040904699997668104,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 3,
+      "event": {
+        "time": 14,
+        "machine": 1,
+        "duration": 15,
+        "affects_plan": true
+      },
+      "B1": {
+        "makespan": 74,
+        "valid": true,
+        "wall_s": 0.0006043010000098548,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 4,
+      "event": {
+        "time": 14,
+        "machine": 2,
+        "duration": 5,
+        "affects_plan": true
+      },
+      "B1": {
+        "makespan": 57,
+        "valid": true,
+        "wall_s": 0.0007915129999958026,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 5,
+      "event": {
+        "time": 14,
+        "machine": 2,
+        "duration": 15,
+        "affects_plan": true
+      },
+      "B1": {
+        "makespan": 65,
+        "valid": true,
+        "wall_s": 0.0004456720000121095,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 6,
+      "event": {
+        "time": 14,
+        "machine": 3,
+        "duration": 5,
+        "affects_plan": true
+      },
+      "B1": {
+        "makespan": 64,
+        "valid": true,
+        "wall_s": 0.0003864219999911711,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 7,
+      "event": {
+        "time": 14,
+        "machine": 3,
+        "duration": 15,
+        "affects_plan": true
+      },
+      "B1": {
+        "makespan": 64,
+        "valid": true,
+        "wall_s": 0.0005084459999977753,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 8,
+      "event": {
+        "time": 14,
+        "machine": 4,
+        "duration": 5,
+        "affects_plan": false
+      },
+      "B1": {
+        "makespan": 57,
+        "valid": true,
+        "wall_s": 0.000460935000006657,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 9,
+      "event": {
+        "time": 14,
+        "machine": 4,
+        "duration": 15,
+        "affects_plan": false
+      },
+      "B1": {
+        "makespan": 57,
+        "valid": true,
+        "wall_s": 0.0006228789999909168,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 10,
+      "event": {
+        "time": 14,
+        "machine": 5,
+        "duration": 5,
+        "affects_plan": true
+      },
+      "B1": {
+        "makespan": 58,
+        "valid": true,
+        "wall_s": 0.0006311310000057802,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 11,
+      "event": {
+        "time": 14,
+        "machine": 5,
+        "duration": 15,
+        "affects_plan": true
+      },
+      "B1": {
+        "makespan": 57,
+        "valid": true,
+        "wall_s": 0.0007870459999992363,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 12,
+      "event": {
+        "time": 28,
+        "machine": 0,
+        "duration": 5,
+        "affects_plan": false
+      },
+      "B1": {
+        "makespan": 57,
+        "valid": true,
+        "wall_s": 0.00035851000001230204,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 13,
+      "event": {
+        "time": 28,
+        "machine": 0,
+        "duration": 15,
+        "affects_plan": true
+      },
+      "B1": {
+        "makespan": 51,
+        "valid": true,
+        "wall_s": 0.0002462410000134696,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 14,
+      "event": {
+        "time": 28,
+        "machine": 1,
+        "duration": 5,
+        "affects_plan": true
+      },
+      "B1": {
+        "makespan": 63,
+        "valid": true,
+        "wall_s": 0.00022305600001004677,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 15,
+      "event": {
+        "time": 28,
+        "machine": 1,
+        "duration": 15,
+        "affects_plan": true
+      },
+      "B1": {
+        "makespan": 73,
+        "valid": true,
+        "wall_s": 0.00030949599999985367,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 16,
+      "event": {
+        "time": 28,
+        "machine": 2,
+        "duration": 5,
+        "affects_plan": false
+      },
+      "B1": {
+        "makespan": 57,
+        "valid": true,
+        "wall_s": 0.00019924000000060005,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 17,
+      "event": {
+        "time": 28,
+        "machine": 2,
+        "duration": 15,
+        "affects_plan": true
+      },
+      "B1": {
+        "makespan": 57,
+        "valid": true,
+        "wall_s": 0.00030383699998992597,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 18,
+      "event": {
+        "time": 28,
+        "machine": 3,
+        "duration": 5,
+        "affects_plan": true
+      },
+      "B1": {
+        "makespan": 57,
+        "valid": true,
+        "wall_s": 0.00033914099998355596,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 19,
+      "event": {
+        "time": 28,
+        "machine": 3,
+        "duration": 15,
+        "affects_plan": true
+      },
+      "B1": {
+        "makespan": 57,
+        "valid": true,
+        "wall_s": 0.00024004100001207007,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 20,
+      "event": {
+        "time": 28,
+        "machine": 4,
+        "duration": 5,
+        "affects_plan": false
+      },
+      "B1": {
+        "makespan": 57,
+        "valid": true,
+        "wall_s": 0.00020950600000446684,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 21,
+      "event": {
+        "time": 28,
+        "machine": 4,
+        "duration": 15,
+        "affects_plan": false
+      },
+      "B1": {
+        "makespan": 57,
+        "valid": true,
+        "wall_s": 0.0002611529999967388,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 22,
+      "event": {
+        "time": 28,
+        "machine": 5,
+        "duration": 5,
+        "affects_plan": true
+      },
+      "B1": {
+        "makespan": 57,
+        "valid": true,
+        "wall_s": 0.00021038699998143784,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 23,
+      "event": {
+        "time": 28,
+        "machine": 5,
+        "duration": 15,
+        "affects_plan": true
+      },
+      "B1": {
+        "makespan": 57,
+        "valid": true,
+        "wall_s": 0.000316606999973601,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 24,
+      "event": {
+        "time": 42,
+        "machine": 0,
+        "duration": 5,
+        "affects_plan": false
+      },
+      "B1": {
+        "makespan": 57,
+        "valid": true,
+        "wall_s": 0.0001915580000115824,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 25,
+      "event": {
+        "time": 42,
+        "machine": 0,
+        "duration": 15,
+        "affects_plan": false
+      },
+      "B1": {
+        "makespan": 57,
+        "valid": true,
+        "wall_s": 0.00017915999998763255,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 26,
+      "event": {
+        "time": 42,
+        "machine": 1,
+        "duration": 5,
+        "affects_plan": true
+      },
+      "B1": {
+        "makespan": 59,
+        "valid": true,
+        "wall_s": 0.00016969600000038554,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 27,
+      "event": {
+        "time": 42,
+        "machine": 1,
+        "duration": 15,
+        "affects_plan": true
+      },
+      "B1": {
+        "makespan": 69,
+        "valid": true,
+        "wall_s": 0.0001626849999922797,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 28,
+      "event": {
+        "time": 42,
+        "machine": 2,
+        "duration": 5,
+        "affects_plan": true
+      },
+      "B1": {
+        "makespan": 63,
+        "valid": true,
+        "wall_s": 0.00015420200000448858,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 29,
+      "event": {
+        "time": 42,
+        "machine": 2,
+        "duration": 15,
+        "affects_plan": true
+      },
+      "B1": {
+        "makespan": 63,
+        "valid": true,
+        "wall_s": 0.0001586799999984123,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 30,
+      "event": {
+        "time": 42,
+        "machine": 3,
+        "duration": 5,
+        "affects_plan": false
+      },
+      "B1": {
+        "makespan": 57,
+        "valid": true,
+        "wall_s": 0.0001695059999917703,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 31,
+      "event": {
+        "time": 42,
+        "machine": 3,
+        "duration": 15,
+        "affects_plan": false
+      },
+      "B1": {
+        "makespan": 57,
+        "valid": true,
+        "wall_s": 0.00015000600001258135,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 32,
+      "event": {
+        "time": 42,
+        "machine": 4,
+        "duration": 5,
+        "affects_plan": false
+      },
+      "B1": {
+        "makespan": 57,
+        "valid": true,
+        "wall_s": 0.0001514690000021801,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 33,
+      "event": {
+        "time": 42,
+        "machine": 4,
+        "duration": 15,
+        "affects_plan": false
+      },
+      "B1": {
+        "makespan": 57,
+        "valid": true,
+        "wall_s": 0.00015777799998772934,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 34,
+      "event": {
+        "time": 42,
+        "machine": 5,
+        "duration": 5,
+        "affects_plan": false
+      },
+      "B1": {
+        "makespan": 57,
+        "valid": true,
+        "wall_s": 0.00014884399999459674,
+        "errors": []
+      }
+    },
+    {
+      "case_id": 35,
+      "event": {
+        "time": 42,
+        "machine": 5,
+        "duration": 15,
+        "affects_plan": false
+      },
+      "B1": {
+        "makespan": 57,
+        "valid": true,
+        "wall_s": 0.00016372599998248916,
+        "errors": []
+      }
+    }
+  ],
+  "summary": {
+    "cases": 36,
+    "affected_plan_cases": 22,
+    "B1_valid_cases": 36,
+    "B1_makespan_min": 51,
+    "B1_makespan_max": 74,
+    "B1_makespan_median": 57.0
+  }
+}
