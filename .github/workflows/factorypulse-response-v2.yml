@@ -1,0 +1,41 @@
+name: FactoryPulse Shared B3 Material QA Research
+on:
+  push:
+    paths:
+      - 'factorypulse_experiment_v1/src/response_v2.py'
+      - 'factorypulse_experiment_v1/run_response_v2.py'
+      - 'factorypulse_experiment_v1/audit_response_v2.py'
+      - 'factorypulse_experiment_v1/tests/test_response_v2.py'
+      - '.github/workflows/factorypulse-response-v2.yml'
+  workflow_dispatch:
+jobs:
+  shared-response:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install -r factorypulse_experiment_v1/requirements.txt
+      - name: Full unit suite
+        working-directory: factorypulse_experiment_v1
+        run: python -m unittest discover -s tests -v
+      - name: Download real UCI 198 defect labels
+        working-directory: factorypulse_experiment_v1
+        run: python fetch_qa_public.py --out data/steel_plates_faults_uci198.zip
+      - name: Paired machine + material + QA scenarios
+        working-directory: factorypulse_experiment_v1
+        run: python run_response_v2.py --data data/mk01.txt --out results/shared_response_v2.json --timeout 10 --qa-data data/steel_plates_faults_uci198.zip
+      - name: Independent offline audit
+        working-directory: factorypulse_experiment_v1
+        run: python audit_response_v2.py --raw results/shared_response_v2.json --data data/mk01.txt
+      - name: Upload raw plans even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: factorypulse-shared-response-v2
+          path: |
+            factorypulse_experiment_v1/results/shared_response_v2.json
+            factorypulse_experiment_v1/results/shared_response_v2.csv
