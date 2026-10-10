@@ -1,0 +1,58 @@
+name: FactoryPulse Prespecified Response Robustness Matrix
+on:
+  push:
+    paths:
+      - 'factorypulse_experiment_v1/run_response_matrix.py'
+      - 'factorypulse_experiment_v1/audit_response_matrix.py'
+      - 'factorypulse_experiment_v1/diagnose_infeasible_matrix.py'
+      - 'factorypulse_experiment_v1/tests/test_response_matrix.py'
+      - 'factorypulse_experiment_v1/RESPONSE_MATRIX_PROTOCOL_1_0.md'
+      - '.github/workflows/factorypulse-response-matrix.yml'
+  workflow_dispatch:
+jobs:
+  matrix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 85
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install locked project dependencies
+        run: pip install -r factorypulse_experiment_v1/requirements.txt
+      - name: Existing and matrix unit tests
+        working-directory: factorypulse_experiment_v1
+        run: python -m unittest discover -s tests -v 2>&1 | tee results_matrix_tests.log
+      - name: Verify Brandimarte mk02 and mk03 git blobs
+        working-directory: factorypulse_experiment_v1
+        run: python fetch_public_instances.py --names mk02 mk03
+      - name: Download labelled public QA data
+        working-directory: factorypulse_experiment_v1
+        run: python fetch_qa_public.py --out data/steel_plates_faults_uci198.zip
+      - name: Full prespecified paired matrix
+        working-directory: factorypulse_experiment_v1
+        run: |
+          python run_response_matrix.py --data data/mk01.txt data/mk02.txt data/mk03.txt \
+            --qa-data data/steel_plates_faults_uci198.zip \
+            --out-dir results/response_matrix --timeout 2 | tee results/response_matrix_stdout.log
+      - name: Independent offline audit of 525 arms
+        working-directory: factorypulse_experiment_v1
+        run: |
+          python audit_response_matrix.py --dir results/response_matrix \
+            --data data/mk01.txt data/mk02.txt data/mk03.txt | tee results/response_matrix_audit.log
+      - name: Triage every non-solution arm
+        working-directory: factorypulse_experiment_v1
+        run: |
+          python diagnose_infeasible_matrix.py \
+            --raw results/response_matrix/response_matrix.json \
+            --out results/response_matrix/diagnostics.json
+      - name: Upload evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: factorypulse-response-matrix-v1
+          if-no-files-found: warn
+          path: |
+            factorypulse_experiment_v1/results/response_matrix/**
+            factorypulse_experiment_v1/results/response_matrix_*.log
+            factorypulse_experiment_v1/results_matrix_tests.log
