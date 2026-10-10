@@ -1,0 +1,49 @@
+name: FactoryPulse G4 Extended evidence
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'factorypulse_experiment_v1/run_g4_extended.py'
+      - 'factorypulse_experiment_v1/check_extended_integrity.py'
+      - 'factorypulse_experiment_v1/fetch_public_instances.py'
+      - 'factorypulse_experiment_v1/src/g4_extended*.py'
+      - 'factorypulse_experiment_v1/tests/test_g4_extended.py'
+      - '.github/workflows/g4_extended.yml'
+jobs:
+  extended:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: factorypulse_experiment_v1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install frozen project requirements
+        run: python -m pip install -r requirements.txt
+      - name: Run all unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Fetch and hash-verify public larger instances
+        run: python fetch_public_instances.py --names mk02 mk03
+      - name: Optimal-origin and heuristic-origin paired mk01 study (36 events, 72 arms)
+        run: python run_g4_extended.py --data data/mk01.txt --out-prefix results/g4_extended_mk01 --time-limit 10 --static-limit 10 --seed 11
+      - name: Larger public mk02 (6 events, 12 arms)
+        run: python run_g4_extended.py --data data/mk02.txt --out-prefix results/g4_extended_mk02 --time-limit 10 --static-limit 10 --seed 11 --case-limit 6
+      - name: Larger public mk03 (6 events, 12 arms)
+        run: python run_g4_extended.py --data data/mk03.txt --out-prefix results/g4_extended_mk03 --time-limit 10 --static-limit 10 --seed 11 --case-limit 6
+      - name: Independent CSV-JSON-summary integrity audit
+        run: |
+          python check_extended_integrity.py --prefix results/g4_extended_mk01
+          python check_extended_integrity.py --prefix results/g4_extended_mk02
+          python check_extended_integrity.py --prefix results/g4_extended_mk03
+      - name: Upload all raw evidence even on failure
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: factorypulse-g4-extended-evidence
+          path: |
+            factorypulse_experiment_v1/results/g4_extended_*.json
+            factorypulse_experiment_v1/results/g4_extended_*.csv
+          if-no-files-found: warn
