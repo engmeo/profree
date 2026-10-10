@@ -1,0 +1,39 @@
+1
+00:00:00,000 --> 00:00:11,000
+Một sự cố máy cắt được nối với ERP, kho, sản xuất và đơn hàng.
+
+2
+00:00:11,000 --> 00:00:20,500
+Kịch bản 2: thiếu linh kiện; quyết định phụ thuộc tồn kho và thời gian bổ sung.
+
+3
+00:00:20,500 --> 00:00:30,500
+Kịch bản 3: QA hold; không thể giải phóng lô hàng trái quy trình.
+
+4
+00:00:30,500 --> 00:00:41,500
+Đối chứng khó: SOP thủ công nhanh hơn dữ liệu tích hợp. FactoryPulse có thể thua.
+
+5
+00:00:41,500 --> 00:00:52,500
+Feed đã cũ: VERIFY, không tự đề xuất một hành động rủi ro.
+
+6
+00:00:52,500 --> 00:01:03,000
+Tuyến dự phòng không được duyệt hoặc thiếu công suất sẽ bị loại trước khi xếp hạng.
+
+7
+00:01:03,000 --> 00:01:11,500
+Nếu không có lợi ích vận hành: hệ thống chọn NO ACTION.
+
+8
+00:01:11,500 --> 00:01:20,500
+Với dữ liệu đủ mới, cùng một chính sách có thể quyết định sớm hơn.
+
+9
+00:01:20,500 --> 00:01:29,500
+Thay đổi thời gian tra cứu và feed: hiệu quả có thể đảo chiều.
+
+10
+00:01:29,500 --> 00:01:38,500
+Kiểm tra QA lần nữa: không bỏ qua cổng phê duyệt.

@@ -1,0 +1,6 @@
+{
+  "name":"factorypulse-d3-evidence", "version":"2.0.0", "private":true,"type":"module",
+  "description":"DENSO 2026 D3: synthetic, auditable incident-to-order decision support trial",
+  "scripts":{"test":"node --test tests/*.test.mjs","benchmark":"node scripts/benchmark.mjs","start":"python3 -m http.server 8000"},
+  "license":"MIT"
+}

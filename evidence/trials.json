@@ -1,0 +1,1713 @@
+{
+  "method": "synthetic paired policy comparison",
+  "statistics": {
+    "count": 24,
+    "groups": [
+      {
+        "type": "machine",
+        "count": 8
+      },
+      {
+        "type": "material",
+        "count": 8
+      },
+      {
+        "type": "quality",
+        "count": 8
+      }
+    ],
+    "integrationWins": 5,
+    "ties": 14,
+    "manualWins": 2,
+    "verificationCases": 3,
+    "invalidActions": 0,
+    "notes": [
+      "Synthetic rule-based benchmark. Neither manualLookup nor feedLag is measured at DENSO.",
+      "Fixtures are hand-authored stress families; do NOT infer statistical generalization or ROI.",
+      "Both policies have identical action sets, evaluation rules and oracle; latency is the manipulated assumption.",
+      "A separate evaluator module could strengthen independence; current oracle shares declared deterministic model."
+    ]
+  },
+  "trials": [
+    {
+      "id": "machine-critical-urgent",
+      "type": "machine",
+      "assumptions": {
+        "manualLookup": 20,
+        "feedLag": 3,
+        "feedFresh": true
+      },
+      "manual": {
+        "status": "RECOMMEND",
+        "action": "reroute",
+        "decisionAt": 20,
+        "loss": 155.75,
+        "lateMinutes": 97,
+        "regret": 60,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "RECOMMEND",
+        "action": "reroute",
+        "decisionAt": 3,
+        "loss": 104.75,
+        "lateMinutes": 63,
+        "regret": 9,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "reroute",
+        "loss": 95.75
+      },
+      "localEvent": "MES · M-CUT-01",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          120,
+          138
+        ],
+        "transit": 18,
+        "cutRate": 3,
+        "assemblyRate": 2,
+        "inspectRate": 4,
+        "stock": 180,
+        "downtimeEnd": 75,
+        "refillAt": 0,
+        "qaHoldUntil": 0,
+        "backupRate": 2,
+        "backupCapacity": 200,
+        "backupApproved": true,
+        "substituteApproved": true,
+        "substituteUnits": 160,
+        "qaExpediteApproved": true,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 3,
+        "manualLookup": 20,
+        "dataFresh": true,
+        "type": "machine",
+        "id": "machine-critical-urgent"
+      }
+    },
+    {
+      "id": "machine-neutral-relaxed",
+      "type": "machine",
+      "assumptions": {
+        "manualLookup": 20,
+        "feedLag": 3,
+        "feedFresh": true
+      },
+      "manual": {
+        "status": "NO_ACTION",
+        "action": "none",
+        "decisionAt": 20,
+        "loss": 0,
+        "lateMinutes": 0,
+        "regret": 0,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "NO_ACTION",
+        "action": "none",
+        "decisionAt": 3,
+        "loss": 0,
+        "lateMinutes": 0,
+        "regret": 0,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "none",
+        "loss": 0
+      },
+      "localEvent": "MES · M-CUT-01",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          250,
+          280
+        ],
+        "transit": 18,
+        "cutRate": 3,
+        "assemblyRate": 2,
+        "inspectRate": 4,
+        "stock": 180,
+        "downtimeEnd": 75,
+        "refillAt": 0,
+        "qaHoldUntil": 0,
+        "backupRate": 2,
+        "backupCapacity": 200,
+        "backupApproved": true,
+        "substituteApproved": true,
+        "substituteUnits": 160,
+        "qaExpediteApproved": true,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 3,
+        "manualLookup": 20,
+        "dataFresh": true,
+        "type": "machine",
+        "id": "machine-neutral-relaxed"
+      }
+    },
+    {
+      "id": "machine-fast-manual",
+      "type": "machine",
+      "assumptions": {
+        "manualLookup": 0,
+        "feedLag": 8,
+        "feedFresh": true
+      },
+      "manual": {
+        "status": "RECOMMEND",
+        "action": "reroute",
+        "decisionAt": 0,
+        "loss": 74.75,
+        "lateMinutes": 38,
+        "regret": 0,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "RECOMMEND",
+        "action": "reroute",
+        "decisionAt": 8,
+        "loss": 98.75,
+        "lateMinutes": 54,
+        "regret": 24,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "reroute",
+        "loss": 74.75
+      },
+      "localEvent": "MES · M-CUT-01",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          122,
+          155
+        ],
+        "transit": 18,
+        "cutRate": 3,
+        "assemblyRate": 2,
+        "inspectRate": 4,
+        "stock": 180,
+        "downtimeEnd": 75,
+        "refillAt": 0,
+        "qaHoldUntil": 0,
+        "backupRate": 2,
+        "backupCapacity": 200,
+        "backupApproved": true,
+        "substituteApproved": true,
+        "substituteUnits": 160,
+        "qaExpediteApproved": true,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 8,
+        "manualLookup": 0,
+        "dataFresh": true,
+        "type": "machine",
+        "id": "machine-fast-manual"
+      }
+    },
+    {
+      "id": "machine-late-feed",
+      "type": "machine",
+      "assumptions": {
+        "manualLookup": 7,
+        "feedLag": 35,
+        "feedFresh": true
+      },
+      "manual": {
+        "status": "RECOMMEND",
+        "action": "reroute",
+        "decisionAt": 7,
+        "loss": 109.75,
+        "lateMinutes": 64,
+        "regret": 21,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "RECOMMEND",
+        "action": "reroute",
+        "decisionAt": 35,
+        "loss": 193.75,
+        "lateMinutes": 120,
+        "regret": 105,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "reroute",
+        "loss": 88.75
+      },
+      "localEvent": "MES · M-CUT-01",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          120,
+          145
+        ],
+        "transit": 18,
+        "cutRate": 3,
+        "assemblyRate": 2,
+        "inspectRate": 4,
+        "stock": 180,
+        "downtimeEnd": 75,
+        "refillAt": 0,
+        "qaHoldUntil": 0,
+        "backupRate": 2,
+        "backupCapacity": 200,
+        "backupApproved": true,
+        "substituteApproved": true,
+        "substituteUnits": 160,
+        "qaExpediteApproved": true,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 35,
+        "manualLookup": 7,
+        "dataFresh": true,
+        "type": "machine",
+        "id": "machine-late-feed"
+      }
+    },
+    {
+      "id": "machine-tight-capacity",
+      "type": "machine",
+      "assumptions": {
+        "manualLookup": 20,
+        "feedLag": 3,
+        "feedFresh": true
+      },
+      "manual": {
+        "status": "RECOMMEND",
+        "action": "repair",
+        "decisionAt": 20,
+        "loss": 132.2,
+        "lateMinutes": 81,
+        "regret": 60,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "RECOMMEND",
+        "action": "repair",
+        "decisionAt": 3,
+        "loss": 81.2,
+        "lateMinutes": 47,
+        "regret": 9,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "repair",
+        "loss": 72.2
+      },
+      "localEvent": "MES · M-CUT-01",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          126,
+          154
+        ],
+        "transit": 18,
+        "cutRate": 3,
+        "assemblyRate": 2,
+        "inspectRate": 4,
+        "stock": 180,
+        "downtimeEnd": 75,
+        "refillAt": 0,
+        "qaHoldUntil": 0,
+        "backupRate": 2,
+        "backupCapacity": 120,
+        "backupApproved": true,
+        "substituteApproved": true,
+        "substituteUnits": 160,
+        "qaExpediteApproved": true,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 3,
+        "manualLookup": 20,
+        "dataFresh": true,
+        "type": "machine",
+        "id": "machine-tight-capacity"
+      }
+    },
+    {
+      "id": "machine-missing-approval",
+      "type": "machine",
+      "assumptions": {
+        "manualLookup": 20,
+        "feedLag": 3,
+        "feedFresh": true
+      },
+      "manual": {
+        "status": "RECOMMEND",
+        "action": "repair",
+        "decisionAt": 20,
+        "loss": 166.2,
+        "lateMinutes": 104,
+        "regret": 60,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "RECOMMEND",
+        "action": "repair",
+        "decisionAt": 3,
+        "loss": 115.2,
+        "lateMinutes": 70,
+        "regret": 9,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "repair",
+        "loss": 106.2
+      },
+      "localEvent": "MES · M-CUT-01",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          115,
+          142
+        ],
+        "transit": 18,
+        "cutRate": 3,
+        "assemblyRate": 2,
+        "inspectRate": 4,
+        "stock": 180,
+        "downtimeEnd": 75,
+        "refillAt": 0,
+        "qaHoldUntil": 0,
+        "backupRate": 2,
+        "backupCapacity": 200,
+        "backupApproved": false,
+        "substituteApproved": false,
+        "substituteUnits": 160,
+        "qaExpediteApproved": false,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 3,
+        "manualLookup": 20,
+        "dataFresh": true,
+        "type": "machine",
+        "id": "machine-missing-approval"
+      }
+    },
+    {
+      "id": "machine-stale-data",
+      "type": "machine",
+      "assumptions": {
+        "manualLookup": 15,
+        "feedLag": 5,
+        "feedFresh": false
+      },
+      "manual": {
+        "status": "RECOMMEND",
+        "action": "reroute",
+        "decisionAt": 15,
+        "loss": 83.75,
+        "lateMinutes": 45,
+        "regret": 45,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "VERIFY",
+        "action": "none",
+        "decisionAt": 5,
+        "loss": 166.5,
+        "lateMinutes": 111,
+        "regret": 127.75,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "reroute",
+        "loss": 38.75
+      },
+      "localEvent": "MES · M-CUT-01",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          135,
+          165
+        ],
+        "transit": 18,
+        "cutRate": 3,
+        "assemblyRate": 2,
+        "inspectRate": 4,
+        "stock": 180,
+        "downtimeEnd": 75,
+        "refillAt": 0,
+        "qaHoldUntil": 0,
+        "backupRate": 2,
+        "backupCapacity": 200,
+        "backupApproved": true,
+        "substituteApproved": true,
+        "substituteUnits": 160,
+        "qaExpediteApproved": true,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 5,
+        "manualLookup": 15,
+        "dataFresh": false,
+        "type": "machine",
+        "id": "machine-stale-data"
+      }
+    },
+    {
+      "id": "machine-distribution-shift",
+      "type": "machine",
+      "assumptions": {
+        "manualLookup": 17,
+        "feedLag": 8,
+        "feedFresh": true
+      },
+      "manual": {
+        "status": "RECOMMEND",
+        "action": "reroute",
+        "decisionAt": 17,
+        "loss": 204.82,
+        "lateMinutes": 132.52,
+        "regret": 51,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "RECOMMEND",
+        "action": "reroute",
+        "decisionAt": 8,
+        "loss": 177.82,
+        "lateMinutes": 114.52,
+        "regret": 24,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "reroute",
+        "loss": 153.82
+      },
+      "localEvent": "MES · M-CUT-01",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          113,
+          130
+        ],
+        "transit": 18,
+        "cutRate": 2.4,
+        "assemblyRate": 1.65,
+        "inspectRate": 4,
+        "stock": 180,
+        "downtimeEnd": 75,
+        "refillAt": 0,
+        "qaHoldUntil": 95,
+        "backupRate": 2,
+        "backupCapacity": 200,
+        "backupApproved": true,
+        "substituteApproved": true,
+        "substituteUnits": 160,
+        "qaExpediteApproved": true,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 8,
+        "manualLookup": 17,
+        "dataFresh": true,
+        "type": "machine",
+        "id": "machine-distribution-shift"
+      }
+    },
+    {
+      "id": "material-critical-urgent",
+      "type": "material",
+      "assumptions": {
+        "manualLookup": 20,
+        "feedLag": 3,
+        "feedFresh": true
+      },
+      "manual": {
+        "status": "RECOMMEND",
+        "action": "substitute",
+        "decisionAt": 20,
+        "loss": 29.6,
+        "lateMinutes": 7.5,
+        "regret": 0,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "RECOMMEND",
+        "action": "substitute",
+        "decisionAt": 3,
+        "loss": 29.6,
+        "lateMinutes": 7.5,
+        "regret": 0,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "substitute",
+        "loss": 29.6
+      },
+      "localEvent": "WMS · PART-X",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          120,
+          138
+        ],
+        "transit": 18,
+        "cutRate": 3,
+        "assemblyRate": 2,
+        "inspectRate": 4,
+        "stock": 60,
+        "downtimeEnd": 0,
+        "refillAt": 95,
+        "qaHoldUntil": 0,
+        "backupRate": 2,
+        "backupCapacity": 200,
+        "backupApproved": true,
+        "substituteApproved": true,
+        "substituteUnits": 160,
+        "qaExpediteApproved": true,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 3,
+        "manualLookup": 20,
+        "dataFresh": true,
+        "type": "material",
+        "id": "material-critical-urgent"
+      }
+    },
+    {
+      "id": "material-neutral-relaxed",
+      "type": "material",
+      "assumptions": {
+        "manualLookup": 20,
+        "feedLag": 3,
+        "feedFresh": true
+      },
+      "manual": {
+        "status": "NO_ACTION",
+        "action": "none",
+        "decisionAt": 20,
+        "loss": 0,
+        "lateMinutes": 0,
+        "regret": 0,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "NO_ACTION",
+        "action": "none",
+        "decisionAt": 3,
+        "loss": 0,
+        "lateMinutes": 0,
+        "regret": 0,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "none",
+        "loss": 0
+      },
+      "localEvent": "WMS · PART-X",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          250,
+          280
+        ],
+        "transit": 18,
+        "cutRate": 3,
+        "assemblyRate": 2,
+        "inspectRate": 4,
+        "stock": 60,
+        "downtimeEnd": 0,
+        "refillAt": 95,
+        "qaHoldUntil": 0,
+        "backupRate": 2,
+        "backupCapacity": 200,
+        "backupApproved": true,
+        "substituteApproved": true,
+        "substituteUnits": 160,
+        "qaExpediteApproved": true,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 3,
+        "manualLookup": 20,
+        "dataFresh": true,
+        "type": "material",
+        "id": "material-neutral-relaxed"
+      }
+    },
+    {
+      "id": "material-fast-manual",
+      "type": "material",
+      "assumptions": {
+        "manualLookup": 0,
+        "feedLag": 8,
+        "feedFresh": true
+      },
+      "manual": {
+        "status": "RECOMMEND",
+        "action": "substitute",
+        "decisionAt": 0,
+        "loss": 22.1,
+        "lateMinutes": 0,
+        "regret": 0,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "RECOMMEND",
+        "action": "substitute",
+        "decisionAt": 8,
+        "loss": 22.1,
+        "lateMinutes": 0,
+        "regret": 0,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "substitute",
+        "loss": 22.1
+      },
+      "localEvent": "WMS · PART-X",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          122,
+          155
+        ],
+        "transit": 18,
+        "cutRate": 3,
+        "assemblyRate": 2,
+        "inspectRate": 4,
+        "stock": 60,
+        "downtimeEnd": 0,
+        "refillAt": 95,
+        "qaHoldUntil": 0,
+        "backupRate": 2,
+        "backupCapacity": 200,
+        "backupApproved": true,
+        "substituteApproved": true,
+        "substituteUnits": 160,
+        "qaExpediteApproved": true,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 8,
+        "manualLookup": 0,
+        "dataFresh": true,
+        "type": "material",
+        "id": "material-fast-manual"
+      }
+    },
+    {
+      "id": "material-late-feed",
+      "type": "material",
+      "assumptions": {
+        "manualLookup": 7,
+        "feedLag": 35,
+        "feedFresh": true
+      },
+      "manual": {
+        "status": "RECOMMEND",
+        "action": "substitute",
+        "decisionAt": 7,
+        "loss": 22.6,
+        "lateMinutes": 0.5,
+        "regret": 0,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "RECOMMEND",
+        "action": "substitute",
+        "decisionAt": 35,
+        "loss": 22.6,
+        "lateMinutes": 0.5,
+        "regret": 0,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "substitute",
+        "loss": 22.6
+      },
+      "localEvent": "WMS · PART-X",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          120,
+          145
+        ],
+        "transit": 18,
+        "cutRate": 3,
+        "assemblyRate": 2,
+        "inspectRate": 4,
+        "stock": 60,
+        "downtimeEnd": 0,
+        "refillAt": 95,
+        "qaHoldUntil": 0,
+        "backupRate": 2,
+        "backupCapacity": 200,
+        "backupApproved": true,
+        "substituteApproved": true,
+        "substituteUnits": 160,
+        "qaExpediteApproved": true,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 35,
+        "manualLookup": 7,
+        "dataFresh": true,
+        "type": "material",
+        "id": "material-late-feed"
+      }
+    },
+    {
+      "id": "material-tight-capacity",
+      "type": "material",
+      "assumptions": {
+        "manualLookup": 20,
+        "feedLag": 3,
+        "feedFresh": true
+      },
+      "manual": {
+        "status": "RECOMMEND",
+        "action": "substitute",
+        "decisionAt": 20,
+        "loss": 22.1,
+        "lateMinutes": 0,
+        "regret": 0,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "RECOMMEND",
+        "action": "substitute",
+        "decisionAt": 3,
+        "loss": 22.1,
+        "lateMinutes": 0,
+        "regret": 0,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "substitute",
+        "loss": 22.1
+      },
+      "localEvent": "WMS · PART-X",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          126,
+          154
+        ],
+        "transit": 18,
+        "cutRate": 3,
+        "assemblyRate": 2,
+        "inspectRate": 4,
+        "stock": 60,
+        "downtimeEnd": 0,
+        "refillAt": 95,
+        "qaHoldUntil": 0,
+        "backupRate": 2,
+        "backupCapacity": 120,
+        "backupApproved": true,
+        "substituteApproved": true,
+        "substituteUnits": 160,
+        "qaExpediteApproved": true,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 3,
+        "manualLookup": 20,
+        "dataFresh": true,
+        "type": "material",
+        "id": "material-tight-capacity"
+      }
+    },
+    {
+      "id": "material-missing-approval",
+      "type": "material",
+      "assumptions": {
+        "manualLookup": 20,
+        "feedLag": 3,
+        "feedFresh": true
+      },
+      "manual": {
+        "status": "RECOMMEND",
+        "action": "expedite",
+        "decisionAt": 20,
+        "loss": 194.1,
+        "lateMinutes": 120,
+        "regret": 60,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "RECOMMEND",
+        "action": "expedite",
+        "decisionAt": 3,
+        "loss": 143.1,
+        "lateMinutes": 86,
+        "regret": 9,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "expedite",
+        "loss": 134.1
+      },
+      "localEvent": "WMS · PART-X",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          115,
+          142
+        ],
+        "transit": 18,
+        "cutRate": 3,
+        "assemblyRate": 2,
+        "inspectRate": 4,
+        "stock": 60,
+        "downtimeEnd": 0,
+        "refillAt": 95,
+        "qaHoldUntil": 0,
+        "backupRate": 2,
+        "backupCapacity": 200,
+        "backupApproved": false,
+        "substituteApproved": false,
+        "substituteUnits": 160,
+        "qaExpediteApproved": false,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 3,
+        "manualLookup": 20,
+        "dataFresh": true,
+        "type": "material",
+        "id": "material-missing-approval"
+      }
+    },
+    {
+      "id": "material-stale-data",
+      "type": "material",
+      "assumptions": {
+        "manualLookup": 15,
+        "feedLag": 5,
+        "feedFresh": false
+      },
+      "manual": {
+        "status": "RECOMMEND",
+        "action": "substitute",
+        "decisionAt": 15,
+        "loss": 22.1,
+        "lateMinutes": 0,
+        "regret": 0,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "VERIFY",
+        "action": "none",
+        "decisionAt": 5,
+        "loss": 226.5,
+        "lateMinutes": 151,
+        "regret": 204.4,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "substitute",
+        "loss": 22.1
+      },
+      "localEvent": "WMS · PART-X",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          135,
+          165
+        ],
+        "transit": 18,
+        "cutRate": 3,
+        "assemblyRate": 2,
+        "inspectRate": 4,
+        "stock": 60,
+        "downtimeEnd": 0,
+        "refillAt": 95,
+        "qaHoldUntil": 0,
+        "backupRate": 2,
+        "backupCapacity": 200,
+        "backupApproved": true,
+        "substituteApproved": true,
+        "substituteUnits": 160,
+        "qaExpediteApproved": true,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 5,
+        "manualLookup": 15,
+        "dataFresh": false,
+        "type": "material",
+        "id": "material-stale-data"
+      }
+    },
+    {
+      "id": "material-distribution-shift",
+      "type": "material",
+      "assumptions": {
+        "manualLookup": 17,
+        "feedLag": 8,
+        "feedFresh": true
+      },
+      "manual": {
+        "status": "RECOMMEND",
+        "action": "substitute",
+        "decisionAt": 17,
+        "loss": 107.07,
+        "lateMinutes": 62.47,
+        "regret": 0,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "RECOMMEND",
+        "action": "substitute",
+        "decisionAt": 8,
+        "loss": 107.07,
+        "lateMinutes": 62.47,
+        "regret": 0,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "substitute",
+        "loss": 107.07
+      },
+      "localEvent": "WMS · PART-X",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          113,
+          130
+        ],
+        "transit": 18,
+        "cutRate": 2.4,
+        "assemblyRate": 1.65,
+        "inspectRate": 4,
+        "stock": 60,
+        "downtimeEnd": 0,
+        "refillAt": 95,
+        "qaHoldUntil": 95,
+        "backupRate": 2,
+        "backupCapacity": 200,
+        "backupApproved": true,
+        "substituteApproved": true,
+        "substituteUnits": 160,
+        "qaExpediteApproved": true,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 8,
+        "manualLookup": 17,
+        "dataFresh": true,
+        "type": "material",
+        "id": "material-distribution-shift"
+      }
+    },
+    {
+      "id": "quality-critical-urgent",
+      "type": "quality",
+      "assumptions": {
+        "manualLookup": 20,
+        "feedLag": 3,
+        "feedFresh": true
+      },
+      "manual": {
+        "status": "RECOMMEND",
+        "action": "reinspect",
+        "decisionAt": 20,
+        "loss": 18.55,
+        "lateMinutes": 7.5,
+        "regret": 0,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "RECOMMEND",
+        "action": "reinspect",
+        "decisionAt": 3,
+        "loss": 18.55,
+        "lateMinutes": 7.5,
+        "regret": 0,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "reinspect",
+        "loss": 18.55
+      },
+      "localEvent": "QA · LOT-101",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          120,
+          138
+        ],
+        "transit": 18,
+        "cutRate": 3,
+        "assemblyRate": 2,
+        "inspectRate": 4,
+        "stock": 180,
+        "downtimeEnd": 0,
+        "refillAt": 0,
+        "qaHoldUntil": 165,
+        "backupRate": 2,
+        "backupCapacity": 200,
+        "backupApproved": true,
+        "substituteApproved": true,
+        "substituteUnits": 160,
+        "qaExpediteApproved": true,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 3,
+        "manualLookup": 20,
+        "dataFresh": true,
+        "type": "quality",
+        "id": "quality-critical-urgent"
+      }
+    },
+    {
+      "id": "quality-neutral-relaxed",
+      "type": "quality",
+      "assumptions": {
+        "manualLookup": 20,
+        "feedLag": 3,
+        "feedFresh": true
+      },
+      "manual": {
+        "status": "NO_ACTION",
+        "action": "none",
+        "decisionAt": 20,
+        "loss": 0,
+        "lateMinutes": 0,
+        "regret": 0,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "NO_ACTION",
+        "action": "none",
+        "decisionAt": 3,
+        "loss": 0,
+        "lateMinutes": 0,
+        "regret": 0,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "none",
+        "loss": 0
+      },
+      "localEvent": "QA · LOT-101",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          250,
+          280
+        ],
+        "transit": 18,
+        "cutRate": 3,
+        "assemblyRate": 2,
+        "inspectRate": 4,
+        "stock": 180,
+        "downtimeEnd": 0,
+        "refillAt": 0,
+        "qaHoldUntil": 165,
+        "backupRate": 2,
+        "backupCapacity": 200,
+        "backupApproved": true,
+        "substituteApproved": true,
+        "substituteUnits": 160,
+        "qaExpediteApproved": true,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 3,
+        "manualLookup": 20,
+        "dataFresh": true,
+        "type": "quality",
+        "id": "quality-neutral-relaxed"
+      }
+    },
+    {
+      "id": "quality-fast-manual",
+      "type": "quality",
+      "assumptions": {
+        "manualLookup": 0,
+        "feedLag": 8,
+        "feedFresh": true
+      },
+      "manual": {
+        "status": "RECOMMEND",
+        "action": "reinspect",
+        "decisionAt": 0,
+        "loss": 11.05,
+        "lateMinutes": 0,
+        "regret": 0,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "RECOMMEND",
+        "action": "reinspect",
+        "decisionAt": 8,
+        "loss": 11.05,
+        "lateMinutes": 0,
+        "regret": 0,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "reinspect",
+        "loss": 11.05
+      },
+      "localEvent": "QA · LOT-101",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          122,
+          155
+        ],
+        "transit": 18,
+        "cutRate": 3,
+        "assemblyRate": 2,
+        "inspectRate": 4,
+        "stock": 180,
+        "downtimeEnd": 0,
+        "refillAt": 0,
+        "qaHoldUntil": 165,
+        "backupRate": 2,
+        "backupCapacity": 200,
+        "backupApproved": true,
+        "substituteApproved": true,
+        "substituteUnits": 160,
+        "qaExpediteApproved": true,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 8,
+        "manualLookup": 0,
+        "dataFresh": true,
+        "type": "quality",
+        "id": "quality-fast-manual"
+      }
+    },
+    {
+      "id": "quality-late-feed",
+      "type": "quality",
+      "assumptions": {
+        "manualLookup": 7,
+        "feedLag": 35,
+        "feedFresh": true
+      },
+      "manual": {
+        "status": "RECOMMEND",
+        "action": "reinspect",
+        "decisionAt": 7,
+        "loss": 11.55,
+        "lateMinutes": 0.5,
+        "regret": 0,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "RECOMMEND",
+        "action": "reinspect",
+        "decisionAt": 35,
+        "loss": 11.55,
+        "lateMinutes": 0.5,
+        "regret": 0,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "reinspect",
+        "loss": 11.55
+      },
+      "localEvent": "QA · LOT-101",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          120,
+          145
+        ],
+        "transit": 18,
+        "cutRate": 3,
+        "assemblyRate": 2,
+        "inspectRate": 4,
+        "stock": 180,
+        "downtimeEnd": 0,
+        "refillAt": 0,
+        "qaHoldUntil": 165,
+        "backupRate": 2,
+        "backupCapacity": 200,
+        "backupApproved": true,
+        "substituteApproved": true,
+        "substituteUnits": 160,
+        "qaExpediteApproved": true,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 35,
+        "manualLookup": 7,
+        "dataFresh": true,
+        "type": "quality",
+        "id": "quality-late-feed"
+      }
+    },
+    {
+      "id": "quality-tight-capacity",
+      "type": "quality",
+      "assumptions": {
+        "manualLookup": 20,
+        "feedLag": 3,
+        "feedFresh": true
+      },
+      "manual": {
+        "status": "RECOMMEND",
+        "action": "reinspect",
+        "decisionAt": 20,
+        "loss": 11.05,
+        "lateMinutes": 0,
+        "regret": 0,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "RECOMMEND",
+        "action": "reinspect",
+        "decisionAt": 3,
+        "loss": 11.05,
+        "lateMinutes": 0,
+        "regret": 0,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "reinspect",
+        "loss": 11.05
+      },
+      "localEvent": "QA · LOT-101",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          126,
+          154
+        ],
+        "transit": 18,
+        "cutRate": 3,
+        "assemblyRate": 2,
+        "inspectRate": 4,
+        "stock": 180,
+        "downtimeEnd": 0,
+        "refillAt": 0,
+        "qaHoldUntil": 165,
+        "backupRate": 2,
+        "backupCapacity": 120,
+        "backupApproved": true,
+        "substituteApproved": true,
+        "substituteUnits": 160,
+        "qaExpediteApproved": true,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 3,
+        "manualLookup": 20,
+        "dataFresh": true,
+        "type": "quality",
+        "id": "quality-tight-capacity"
+      }
+    },
+    {
+      "id": "quality-missing-approval",
+      "type": "quality",
+      "assumptions": {
+        "manualLookup": 20,
+        "feedLag": 3,
+        "feedFresh": true
+      },
+      "manual": {
+        "status": "NO_ACTION",
+        "action": "none",
+        "decisionAt": 20,
+        "loss": 262,
+        "lateMinutes": 171.5,
+        "regret": 0,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "NO_ACTION",
+        "action": "none",
+        "decisionAt": 3,
+        "loss": 262,
+        "lateMinutes": 171.5,
+        "regret": 0,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "none",
+        "loss": 262
+      },
+      "localEvent": "QA · LOT-101",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          115,
+          142
+        ],
+        "transit": 18,
+        "cutRate": 3,
+        "assemblyRate": 2,
+        "inspectRate": 4,
+        "stock": 180,
+        "downtimeEnd": 0,
+        "refillAt": 0,
+        "qaHoldUntil": 165,
+        "backupRate": 2,
+        "backupCapacity": 200,
+        "backupApproved": false,
+        "substituteApproved": false,
+        "substituteUnits": 160,
+        "qaExpediteApproved": false,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 3,
+        "manualLookup": 20,
+        "dataFresh": true,
+        "type": "quality",
+        "id": "quality-missing-approval"
+      }
+    },
+    {
+      "id": "quality-stale-data",
+      "type": "quality",
+      "assumptions": {
+        "manualLookup": 15,
+        "feedLag": 5,
+        "feedFresh": false
+      },
+      "manual": {
+        "status": "RECOMMEND",
+        "action": "reinspect",
+        "decisionAt": 15,
+        "loss": 11.05,
+        "lateMinutes": 0,
+        "regret": 0,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "VERIFY",
+        "action": "none",
+        "decisionAt": 5,
+        "loss": 199,
+        "lateMinutes": 128.5,
+        "regret": 187.95,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "reinspect",
+        "loss": 11.05
+      },
+      "localEvent": "QA · LOT-101",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          135,
+          165
+        ],
+        "transit": 18,
+        "cutRate": 3,
+        "assemblyRate": 2,
+        "inspectRate": 4,
+        "stock": 180,
+        "downtimeEnd": 0,
+        "refillAt": 0,
+        "qaHoldUntil": 165,
+        "backupRate": 2,
+        "backupCapacity": 200,
+        "backupApproved": true,
+        "substituteApproved": true,
+        "substituteUnits": 160,
+        "qaExpediteApproved": true,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 5,
+        "manualLookup": 15,
+        "dataFresh": false,
+        "type": "quality",
+        "id": "quality-stale-data"
+      }
+    },
+    {
+      "id": "quality-distribution-shift",
+      "type": "quality",
+      "assumptions": {
+        "manualLookup": 17,
+        "feedLag": 8,
+        "feedFresh": true
+      },
+      "manual": {
+        "status": "NO_ACTION",
+        "action": "none",
+        "decisionAt": 17,
+        "loss": 84.97,
+        "lateMinutes": 62.47,
+        "regret": 0,
+        "violations": 0
+      },
+      "integrated": {
+        "status": "NO_ACTION",
+        "action": "none",
+        "decisionAt": 8,
+        "loss": 84.97,
+        "lateMinutes": 62.47,
+        "regret": 0,
+        "violations": 0
+      },
+      "oracle": {
+        "action": "none",
+        "loss": 84.97
+      },
+      "localEvent": "QA · LOT-101",
+      "world": {
+        "quantities": [
+          90,
+          70
+        ],
+        "priorities": [
+          2,
+          1
+        ],
+        "due": [
+          113,
+          130
+        ],
+        "transit": 18,
+        "cutRate": 2.4,
+        "assemblyRate": 1.65,
+        "inspectRate": 4,
+        "stock": 180,
+        "downtimeEnd": 0,
+        "refillAt": 0,
+        "qaHoldUntil": 95,
+        "backupRate": 2,
+        "backupCapacity": 200,
+        "backupApproved": true,
+        "substituteApproved": true,
+        "substituteUnits": 160,
+        "qaExpediteApproved": true,
+        "repairDuration": 30,
+        "routeSetup": 12,
+        "inboundDuration": 38,
+        "qaReinspectDuration": 28,
+        "decisionDeadline": 60,
+        "feedLag": 8,
+        "manualLookup": 17,
+        "dataFresh": true,
+        "type": "quality",
+        "id": "quality-distribution-shift"
+      }
+    }
+  ]
+}

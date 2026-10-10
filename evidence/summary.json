@@ -1,0 +1,28 @@
+{
+  "count": 24,
+  "groups": [
+    {
+      "type": "machine",
+      "count": 8
+    },
+    {
+      "type": "material",
+      "count": 8
+    },
+    {
+      "type": "quality",
+      "count": 8
+    }
+  ],
+  "integrationWins": 5,
+  "ties": 14,
+  "manualWins": 2,
+  "verificationCases": 3,
+  "invalidActions": 0,
+  "notes": [
+    "Synthetic rule-based benchmark. Neither manualLookup nor feedLag is measured at DENSO.",
+    "Fixtures are hand-authored stress families; do NOT infer statistical generalization or ROI.",
+    "Both policies have identical action sets, evaluation rules and oracle; latency is the manipulated assumption.",
+    "A separate evaluator module could strengthen independence; current oracle shares declared deterministic model."
+  ]
+}
