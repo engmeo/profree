@@ -1,0 +1,15 @@
+{
+  "dataset": "mk01",
+  "source": "https://github.com/SchedulingLab/fjsp-instances/blob/main/brandimarte/mk01.txt",
+  "sha256": "449ada8093e03a84bf2255fa2a1673ccbc80cce7b82e855c5216533a330751ff",
+  "jobs": 10,
+  "machines": 6,
+  "operations": 55,
+  "machine_choices": 115,
+  "heuristic_makespan": 57,
+  "heuristic_valid": true,
+  "heuristic_elapsed_seconds": 0.00025926200001435973,
+  "python": "3.13.5",
+  "solver": "none",
+  "status": "only validation+heuristic, no CP-SAT or B3"
+}
