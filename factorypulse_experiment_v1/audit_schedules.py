@@ -1,8 +1,9 @@
 """Independent replay validator for FULL G4 Extended schedule artifacts.
 No solver dependency. Fails closed on absent plans; does not trust stored flags.
 """
-import argparse, hashlib, json
+import argparse, hashlib, json, sys
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
 from src.fjsp import parse_fjsp,validate_schedule,makespan
 from src.dynamic import disruption_state,validate_after
 from src.g4_extended import policy_change_counts,paired_metrics
