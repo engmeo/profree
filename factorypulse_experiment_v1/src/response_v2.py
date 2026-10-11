@@ -106,7 +106,7 @@ def schedule_changes(original, result):
     return dict(reassigned=swapped,start_shift=drift,machine_order_inversions=inversions)
 
 
-def solve_shared(state, original, *, material=None, qa=None, mode='B3', weights=(1000,200,1), timeout=10, seed=11):
+def solve_shared(state, original, *, material=None, qa=None, mode='B3', weights=(1000,200,1), timeout=10, seed=11, local_focus_job=None):
     """One solver for B3/C2 on identical instance, snapshot, materials and QA.
     B3 objective: alpha*makespan + beta*#machine reassignments + gamma*sum(abs(start-original_start)).
     Machine-order inversions are *reported*, not in objective.
@@ -114,7 +114,8 @@ def solve_shared(state, original, *, material=None, qa=None, mode='B3', weights=
     from ortools.sat.python import cp_model
     from fjsp import validate_schedule, makespan
     from dynamic import validate_after
-    if mode not in ('B3','C2','C1'):raise ValueError('unknown solver mode')
+    if mode not in ('B3','C2','C1','LOCAL'):raise ValueError('unknown solver mode')
+    if mode=='LOCAL' and (not isinstance(local_focus_job,int) or not 0<=local_focus_job<len(state['instance']['jobs'])):raise ValueError('invalid local focus job')
     if len(weights)!=3 or any(not isinstance(w,int) or w<0 for w in weights) or weights[0]==0:
         raise ValueError('bad B3 weights')
     started=time.perf_counter();inst,reference,qa_releases=event_model(state['instance'],original,state,qa=qa)
@@ -172,7 +173,11 @@ def solve_shared(state, original, *, material=None, qa=None, mode='B3', weights=
                 if demand:changes_times.append(s);changes_qty.append(-demand)
             model.AddReservoirConstraint(changes_times,changes_qty,0,maxinv)
     max_end=model.NewIntVar(0,upper,'makespan');model.AddMaxEquality(max_end,list(ends.values()))
-    if mode=='C2':model.Minimize(max_end)
+    if mode=='LOCAL':
+        # Lexicographic: minimize completion of focal job first; whole-shop makespan second.
+        # Same feasible set as C2/B3, with all machine/material/QA/immutable constraints.
+        model.Minimize((upper+1)*ends[local_focus_job,len(jobs[local_focus_job])-1]+max_end)
+    elif mode=='C2':model.Minimize(max_end)
     elif mode=='C1':
         model.Minimize((upper*len(starts)+1)*max_end+sum(drifts))
     else:

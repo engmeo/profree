@@ -1,0 +1,42 @@
+name: FactoryPulse Official FJSP P0-P2 Integration
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'factorypulse_experiment_v1/official_lab/**'
+      - 'factorypulse_experiment_v1/tests/test_official_lab.py'
+      - 'factorypulse_experiment_v1/src/response_v2.py'
+      - '.github/workflows/factorypulse-official-resilience-lab.yml'
+jobs:
+  official-research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 80
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Dependencies
+        run: pip install -r factorypulse_experiment_v1/requirements.txt
+      - name: Unit suite with CP-SAT
+        working-directory: factorypulse_experiment_v1
+        run: python -m unittest discover -s tests -v 2>&1 | tee /tmp/official_lab_tests.log
+      - name: Official paired LOCAL/C1/C2/B3 experiment
+        working-directory: factorypulse_experiment_v1
+        run: |
+          python official_lab/experiment.py --data data/mk01.txt --out results/official_lab --seeds 42 123 --limit 24 --timeout 3 | tee /tmp/official_lab_run.log
+      - name: Independent audit of original schedule and all four arms
+        working-directory: factorypulse_experiment_v1
+        run: python official_lab/audit.py --json results/official_lab/results.json --data data/mk01.txt | tee /tmp/official_lab_audit.log
+      - name: Stress + controlled relaxation experiments
+        working-directory: factorypulse_experiment_v1
+        run: python official_lab/stress.py --data data/mk01.txt --out results/official_lab/stress.json --timeout 3 | tee /tmp/official_lab_stress.log
+      - name: Upload result evidence even if failed
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: factorypulse-official-p0-p2-evidence
+          if-no-files-found: warn
+          path: |
+            factorypulse_experiment_v1/results/official_lab/**
+            /tmp/official_lab_*.log

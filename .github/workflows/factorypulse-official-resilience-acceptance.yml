@@ -1,0 +1,57 @@
+name: FactoryPulse Official Research Acceptance (P0-P2)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'factorypulse_experiment_v1/official_lab/**'
+      - 'factorypulse_experiment_v1/tests/test_official_acceptance.py'
+      - '.github/workflows/factorypulse-official-resilience-acceptance.yml'
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r factorypulse_experiment_v1/requirements.txt
+      - name: Activate official CP-SAT LOCAL extension on CI checkout
+        working-directory: factorypulse_experiment_v1
+        run: |
+          python official_lab/patch_official_solver.py
+          python official_lab/patch_official_solver.py --check | grep PATCH_APPLIED
+      - name: Full tests, including model-dependent tests
+        working-directory: factorypulse_experiment_v1
+        run: python -m unittest discover -s tests -v
+      - name: Public instance integrity mk02/mk03
+        working-directory: factorypulse_experiment_v1
+        run: python fetch_public_instances.py --names mk02 mk03
+      - name: P0 paired search on each instance (explicit separate coverage)
+        working-directory: factorypulse_experiment_v1
+        run: |
+          python official_lab/experiment.py --data data/mk01.txt \
+            --out results/official_lab_acceptance/mk01 --seeds 42 123 --limit 24 --timeout 3
+          python official_lab/experiment.py --data data/mk02.txt \
+            --out results/official_lab_acceptance/mk02 --seeds 42 123 --limit 24 --timeout 3
+          python official_lab/experiment.py --data data/mk03.txt \
+            --out results/official_lab_acceptance/mk03 --seeds 42 123 --limit 24 --timeout 3
+      - name: P0 P1 offline audit and independent graph oracle
+        working-directory: factorypulse_experiment_v1
+        run: |
+          python official_lab/audit.py --json results/official_lab_acceptance/mk01/results.json --data data/mk01.txt
+          python official_lab/audit.py --json results/official_lab_acceptance/mk02/results.json --data data/mk02.txt
+          python official_lab/audit.py --json results/official_lab_acceptance/mk03/results.json --data data/mk03.txt
+      - name: P2 stress + relaxation for mk01
+        working-directory: factorypulse_experiment_v1
+        run: |
+          python official_lab/stress.py --data data/mk01.txt \
+            --out results/official_lab_acceptance/stress.json --timeout 3
+          python official_lab/stress_audit.py --json results/official_lab_acceptance/stress.json
+      - name: Upload auditable evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: factorypulse-official-research-acceptance
+          if-no-files-found: warn
+          path: factorypulse_experiment_v1/results/official_lab_acceptance/**
