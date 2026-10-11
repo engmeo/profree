@@ -1,0 +1,50 @@
+name: FactoryPulse Cross-Instance Local vs Global
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'factorypulse_experiment_v1/official_lab/expanded_*.py'
+      - 'factorypulse_experiment_v1/official_lab/experiment.py'
+      - 'factorypulse_experiment_v1/official_lab/audit.py'
+      - '.github/workflows/factorypulse-expanded-local-global.yml'
+      - 'factorypulse_experiment_v1/tests/test_expanded_matrix.py'
+jobs:
+  paired-cross-instance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install benchmark dependencies
+        working-directory: factorypulse_experiment_v1
+        run: python -m pip install -r requirements.txt
+      - name: Fetch public mk02 and mk03 with source verification
+        working-directory: factorypulse_experiment_v1
+        run: python fetch_public_instances.py --names mk02 mk03
+      - name: Test expanded matrix accounting
+        working-directory: factorypulse_experiment_v1
+        run: python -m unittest tests/test_expanded_matrix.py -v
+      - name: Cross-instance paired CP-SAT runs (3 seeds x 3 kinds x 2 focus jobs per instance)
+        working-directory: factorypulse_experiment_v1
+        run: |
+          python official_lab/expanded_matrix.py \
+            --data data/mk01.txt data/mk02.txt data/mk03.txt \
+            --out results/expanded_matrix --timeout 2 | tee /tmp/expanded_matrix.log
+      - name: Independent replay and coverage audit
+        working-directory: factorypulse_experiment_v1
+        run: |
+          python official_lab/expanded_audit.py \
+            --out results/expanded_matrix \
+            --data data/mk01.txt data/mk02.txt data/mk03.txt | tee /tmp/expanded_audit.log
+      - name: Upload original evidence (even on failure)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: factorypulse-cross-instance-local-global
+          if-no-files-found: warn
+          path: |
+            factorypulse_experiment_v1/results/expanded_matrix/**
+            /tmp/expanded_matrix.log
+            /tmp/expanded_audit.log
