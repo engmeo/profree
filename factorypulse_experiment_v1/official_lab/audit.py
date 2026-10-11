@@ -28,7 +28,7 @@ def audit(doc,data):
                 violations=audit_shared(st,base,plan,inp['material'],inp['qa'])
                 if violations:errors.append(f'{i} {method} invalid {violations}')
                 fresh=kpi(plan,inp['due'],inp['priority'],inp['focus'])
-                if digest(fresh)!=digest(arm['kpi']):errors.append(f'{i} {method} KPI mismatch')
+                if json.loads(json.dumps(fresh)) != arm['kpi']:errors.append(f'{i} {method} KPI mismatch')
                 fresh_g=traced_graph(instance,plan,st,inp['material'],inp['qa'])
                 if fresh_g!=arm['graph'] or check_graph(fresh_g):errors.append(f'{i} {method} graph invalid')
                 for violation in audit_graph_oracle(instance,plan,inp['material'],inp['qa'],arm['graph']):
