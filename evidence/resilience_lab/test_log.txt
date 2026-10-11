@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: no invented KPI: KPI derives from actual schedule
+ok 1 - no invented KPI: KPI derives from actual schedule
+  ---
+  duration_ms: 8.409389
+  type: 'test'
+  ...
+# Subtest: paradox example genuine local improvement vs factory degradation
+ok 2 - paradox example genuine local improvement vs factory degradation
+  ---
+  duration_ms: 1.107761
+  type: 'test'
+  ...
+# Subtest: trace graph has verifiable edges
+ok 3 - trace graph has verifiable edges
+  ---
+  duration_ms: 0.275165
+  type: 'test'
+  ...
+# Subtest: stress grid finite reproducible includes blocked material
+ok 4 - stress grid finite reproducible includes blocked material
+  ---
+  duration_ms: 3.137951
+  type: 'test'
+  ...
+# Subtest: search finds real counterexample
+ok 5 - search finds real counterexample
+  ---
+  duration_ms: 0.435527
+  type: 'test'
+  ...
+# Subtest: bad action rejected
+ok 6 - bad action rejected
+  ---
+  duration_ms: 0.214483
+  type: 'test'
+  ...
+# Subtest: bad input rejected
+ok 7 - bad input rejected
+  ---
+  duration_ms: 0.173031
+  type: 'test'
+  ...
+# Subtest: simulation deterministic
+ok 8 - simulation deterministic
+  ---
+  duration_ms: 0.121593
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 72.988522

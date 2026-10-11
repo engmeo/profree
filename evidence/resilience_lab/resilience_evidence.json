@@ -1,0 +1,1388 @@
+{
+  "schema": "FactoryPulse-resilience-lab-0.1",
+  "provenance": "Deterministic toy submodel; does not reuse official C0/C1/C2/B3 CP-SAT results.",
+  "study": "Local first-vs-global order on 2 orders with shared resources",
+  "protocol": {
+    "baseline": {
+      "aCut": 14,
+      "bCut": 8,
+      "assembly": 6,
+      "qa": 10,
+      "dueA": 35,
+      "dueB": 27,
+      "priorityA": 1,
+      "priorityB": 4,
+      "material": 2,
+      "repair": 0
+    },
+    "searchDueA": [
+      28,
+      35,
+      42
+    ],
+    "searchDueB": [
+      20,
+      27,
+      34
+    ],
+    "searchPriorityB": [
+      2,
+      4,
+      6
+    ],
+    "stressMaterial": [
+      0,
+      1,
+      2
+    ],
+    "stressRepair": [
+      0,
+      4,
+      8
+    ],
+    "stressDueBTightening": [
+      0,
+      4,
+      8,
+      12
+    ]
+  },
+  "p0": {
+    "found": true,
+    "config": {
+      "aCut": 14,
+      "bCut": 8,
+      "assembly": 6,
+      "qa": 10,
+      "dueA": 28,
+      "dueB": 20,
+      "priorityA": 1,
+      "priorityB": 2,
+      "material": 2,
+      "repair": 0
+    },
+    "result": {
+      "local": {
+        "action": "A-first",
+        "rows": [
+          {
+            "id": "A",
+            "priority": 1,
+            "due": 28,
+            "cutStart": 0,
+            "cutEnd": 14,
+            "assemblyStart": 14,
+            "assemblyEnd": 20,
+            "qaStart": 20,
+            "qaEnd": 30,
+            "eta": 30,
+            "late": 2
+          },
+          {
+            "id": "B",
+            "priority": 2,
+            "due": 20,
+            "cutStart": 14,
+            "cutEnd": 22,
+            "assemblyStart": 22,
+            "assemblyEnd": 28,
+            "qaStart": 30,
+            "qaEnd": 40,
+            "eta": 40,
+            "late": 20
+          }
+        ],
+        "localKpi": 14,
+        "globalKpi": 42,
+        "makespan": 40,
+        "lateOrders": 2,
+        "feasible": true
+      },
+      "alternative": {
+        "action": "B-first",
+        "rows": [
+          {
+            "id": "A",
+            "priority": 1,
+            "due": 28,
+            "cutStart": 8,
+            "cutEnd": 22,
+            "assemblyStart": 22,
+            "assemblyEnd": 28,
+            "qaStart": 28,
+            "qaEnd": 38,
+            "eta": 38,
+            "late": 10
+          },
+          {
+            "id": "B",
+            "priority": 2,
+            "due": 20,
+            "cutStart": 0,
+            "cutEnd": 8,
+            "assemblyStart": 8,
+            "assemblyEnd": 14,
+            "qaStart": 14,
+            "qaEnd": 24,
+            "eta": 24,
+            "late": 4
+          }
+        ],
+        "localKpi": 22,
+        "globalKpi": 18,
+        "makespan": 38,
+        "lateOrders": 2,
+        "feasible": true
+      },
+      "c1": {
+        "action": "A-first",
+        "rows": [
+          {
+            "id": "A",
+            "priority": 1,
+            "due": 28,
+            "cutStart": 0,
+            "cutEnd": 14,
+            "assemblyStart": 14,
+            "assemblyEnd": 20,
+            "qaStart": 20,
+            "qaEnd": 30,
+            "eta": 30,
+            "late": 2
+          },
+          {
+            "id": "B",
+            "priority": 2,
+            "due": 20,
+            "cutStart": 14,
+            "cutEnd": 22,
+            "assemblyStart": 22,
+            "assemblyEnd": 28,
+            "qaStart": 30,
+            "qaEnd": 40,
+            "eta": 40,
+            "late": 20
+          }
+        ],
+        "localKpi": 14,
+        "globalKpi": 42,
+        "makespan": 40,
+        "lateOrders": 2,
+        "feasible": true
+      },
+      "c2": {
+        "action": "B-first",
+        "rows": [
+          {
+            "id": "A",
+            "priority": 1,
+            "due": 28,
+            "cutStart": 8,
+            "cutEnd": 22,
+            "assemblyStart": 22,
+            "assemblyEnd": 28,
+            "qaStart": 28,
+            "qaEnd": 38,
+            "eta": 38,
+            "late": 10
+          },
+          {
+            "id": "B",
+            "priority": 2,
+            "due": 20,
+            "cutStart": 0,
+            "cutEnd": 8,
+            "assemblyStart": 8,
+            "assemblyEnd": 14,
+            "qaStart": 14,
+            "qaEnd": 24,
+            "eta": 24,
+            "late": 4
+          }
+        ],
+        "localKpi": 22,
+        "globalKpi": 18,
+        "makespan": 38,
+        "lateOrders": 2,
+        "feasible": true
+      },
+      "b3": {
+        "action": "B-first",
+        "rows": [
+          {
+            "id": "A",
+            "priority": 1,
+            "due": 28,
+            "cutStart": 8,
+            "cutEnd": 22,
+            "assemblyStart": 22,
+            "assemblyEnd": 28,
+            "qaStart": 28,
+            "qaEnd": 38,
+            "eta": 38,
+            "late": 10
+          },
+          {
+            "id": "B",
+            "priority": 2,
+            "due": 20,
+            "cutStart": 0,
+            "cutEnd": 8,
+            "assemblyStart": 8,
+            "assemblyEnd": 14,
+            "qaStart": 14,
+            "qaEnd": 24,
+            "eta": 24,
+            "late": 4
+          }
+        ],
+        "localKpi": 22,
+        "globalKpi": 18,
+        "makespan": 38,
+        "lateOrders": 2,
+        "feasible": true
+      },
+      "paradox": true,
+      "deltaLocal": 8,
+      "deltaGlobal": 24
+    },
+    "searchCount": 1,
+    "protocol": "fixed deterministic parameter grid"
+  },
+  "baseline": {
+    "local": {
+      "action": "A-first",
+      "rows": [
+        {
+          "id": "A",
+          "priority": 1,
+          "due": 35,
+          "cutStart": 0,
+          "cutEnd": 14,
+          "assemblyStart": 14,
+          "assemblyEnd": 20,
+          "qaStart": 20,
+          "qaEnd": 30,
+          "eta": 30,
+          "late": 0
+        },
+        {
+          "id": "B",
+          "priority": 4,
+          "due": 27,
+          "cutStart": 14,
+          "cutEnd": 22,
+          "assemblyStart": 22,
+          "assemblyEnd": 28,
+          "qaStart": 30,
+          "qaEnd": 40,
+          "eta": 40,
+          "late": 13
+        }
+      ],
+      "localKpi": 14,
+      "globalKpi": 52,
+      "makespan": 40,
+      "lateOrders": 1,
+      "feasible": true
+    },
+    "alternative": {
+      "action": "B-first",
+      "rows": [
+        {
+          "id": "A",
+          "priority": 1,
+          "due": 35,
+          "cutStart": 8,
+          "cutEnd": 22,
+          "assemblyStart": 22,
+          "assemblyEnd": 28,
+          "qaStart": 28,
+          "qaEnd": 38,
+          "eta": 38,
+          "late": 3
+        },
+        {
+          "id": "B",
+          "priority": 4,
+          "due": 27,
+          "cutStart": 0,
+          "cutEnd": 8,
+          "assemblyStart": 8,
+          "assemblyEnd": 14,
+          "qaStart": 14,
+          "qaEnd": 24,
+          "eta": 24,
+          "late": 0
+        }
+      ],
+      "localKpi": 22,
+      "globalKpi": 3,
+      "makespan": 38,
+      "lateOrders": 1,
+      "feasible": true
+    },
+    "c1": {
+      "action": "A-first",
+      "rows": [
+        {
+          "id": "A",
+          "priority": 1,
+          "due": 35,
+          "cutStart": 0,
+          "cutEnd": 14,
+          "assemblyStart": 14,
+          "assemblyEnd": 20,
+          "qaStart": 20,
+          "qaEnd": 30,
+          "eta": 30,
+          "late": 0
+        },
+        {
+          "id": "B",
+          "priority": 4,
+          "due": 27,
+          "cutStart": 14,
+          "cutEnd": 22,
+          "assemblyStart": 22,
+          "assemblyEnd": 28,
+          "qaStart": 30,
+          "qaEnd": 40,
+          "eta": 40,
+          "late": 13
+        }
+      ],
+      "localKpi": 14,
+      "globalKpi": 52,
+      "makespan": 40,
+      "lateOrders": 1,
+      "feasible": true
+    },
+    "c2": {
+      "action": "B-first",
+      "rows": [
+        {
+          "id": "A",
+          "priority": 1,
+          "due": 35,
+          "cutStart": 8,
+          "cutEnd": 22,
+          "assemblyStart": 22,
+          "assemblyEnd": 28,
+          "qaStart": 28,
+          "qaEnd": 38,
+          "eta": 38,
+          "late": 3
+        },
+        {
+          "id": "B",
+          "priority": 4,
+          "due": 27,
+          "cutStart": 0,
+          "cutEnd": 8,
+          "assemblyStart": 8,
+          "assemblyEnd": 14,
+          "qaStart": 14,
+          "qaEnd": 24,
+          "eta": 24,
+          "late": 0
+        }
+      ],
+      "localKpi": 22,
+      "globalKpi": 3,
+      "makespan": 38,
+      "lateOrders": 1,
+      "feasible": true
+    },
+    "b3": {
+      "action": "B-first",
+      "rows": [
+        {
+          "id": "A",
+          "priority": 1,
+          "due": 35,
+          "cutStart": 8,
+          "cutEnd": 22,
+          "assemblyStart": 22,
+          "assemblyEnd": 28,
+          "qaStart": 28,
+          "qaEnd": 38,
+          "eta": 38,
+          "late": 3
+        },
+        {
+          "id": "B",
+          "priority": 4,
+          "due": 27,
+          "cutStart": 0,
+          "cutEnd": 8,
+          "assemblyStart": 8,
+          "assemblyEnd": 14,
+          "qaStart": 14,
+          "qaEnd": 24,
+          "eta": 24,
+          "late": 0
+        }
+      ],
+      "localKpi": 22,
+      "globalKpi": 3,
+      "makespan": 38,
+      "lateOrders": 1,
+      "feasible": true
+    },
+    "paradox": true,
+    "deltaLocal": 8,
+    "deltaGlobal": 49
+  },
+  "p1": {
+    "local": {
+      "nodes": [
+        {
+          "id": "INCIDENT",
+          "label": "Machine capacity / priority decision",
+          "kind": "event"
+        },
+        {
+          "id": "CUT_A",
+          "label": "Cut order A",
+          "time": 14
+        },
+        {
+          "id": "CUT_B",
+          "label": "Cut order B",
+          "time": 22
+        },
+        {
+          "id": "ASSEMBLY_A",
+          "label": "Assembly A",
+          "time": 20
+        },
+        {
+          "id": "QA_A",
+          "label": "QA A",
+          "time": 30
+        },
+        {
+          "id": "SHIP_A",
+          "label": "Delivery A",
+          "time": 30
+        },
+        {
+          "id": "ASSEMBLY_B",
+          "label": "Assembly B",
+          "time": 28
+        },
+        {
+          "id": "QA_B",
+          "label": "QA B",
+          "time": 40
+        },
+        {
+          "id": "SHIP_B",
+          "label": "Delivery B",
+          "time": 40
+        }
+      ],
+      "edges": [
+        {
+          "from": "INCIDENT",
+          "to": "CUT_A",
+          "rule": "scheduled capacity allocation",
+          "evidence": "cut starts 0, ends 14"
+        },
+        {
+          "from": "CUT_A",
+          "to": "ASSEMBLY_A",
+          "rule": "precedence cut -> assembly",
+          "evidence": "assembly starts 14"
+        },
+        {
+          "from": "ASSEMBLY_A",
+          "to": "QA_A",
+          "rule": "precedence assembly -> QA",
+          "evidence": "QA starts 20"
+        },
+        {
+          "from": "QA_A",
+          "to": "SHIP_A",
+          "rule": "QA release -> shipment ETA",
+          "evidence": "ETA 30; due 35; late 0"
+        },
+        {
+          "from": "INCIDENT",
+          "to": "CUT_B",
+          "rule": "scheduled capacity allocation",
+          "evidence": "cut starts 14, ends 22"
+        },
+        {
+          "from": "CUT_B",
+          "to": "ASSEMBLY_B",
+          "rule": "precedence cut -> assembly",
+          "evidence": "assembly starts 22"
+        },
+        {
+          "from": "ASSEMBLY_B",
+          "to": "QA_B",
+          "rule": "precedence assembly -> QA",
+          "evidence": "QA starts 30"
+        },
+        {
+          "from": "QA_B",
+          "to": "SHIP_B",
+          "rule": "QA release -> shipment ETA",
+          "evidence": "ETA 40; due 27; late 13"
+        }
+      ],
+      "source": "derived from deterministic stage schedule, not learned causality"
+    },
+    "global": {
+      "nodes": [
+        {
+          "id": "INCIDENT",
+          "label": "Machine capacity / priority decision",
+          "kind": "event"
+        },
+        {
+          "id": "CUT_A",
+          "label": "Cut order A",
+          "time": 22
+        },
+        {
+          "id": "CUT_B",
+          "label": "Cut order B",
+          "time": 8
+        },
+        {
+          "id": "ASSEMBLY_A",
+          "label": "Assembly A",
+          "time": 28
+        },
+        {
+          "id": "QA_A",
+          "label": "QA A",
+          "time": 38
+        },
+        {
+          "id": "SHIP_A",
+          "label": "Delivery A",
+          "time": 38
+        },
+        {
+          "id": "ASSEMBLY_B",
+          "label": "Assembly B",
+          "time": 14
+        },
+        {
+          "id": "QA_B",
+          "label": "QA B",
+          "time": 24
+        },
+        {
+          "id": "SHIP_B",
+          "label": "Delivery B",
+          "time": 24
+        }
+      ],
+      "edges": [
+        {
+          "from": "INCIDENT",
+          "to": "CUT_A",
+          "rule": "scheduled capacity allocation",
+          "evidence": "cut starts 8, ends 22"
+        },
+        {
+          "from": "CUT_A",
+          "to": "ASSEMBLY_A",
+          "rule": "precedence cut -> assembly",
+          "evidence": "assembly starts 22"
+        },
+        {
+          "from": "ASSEMBLY_A",
+          "to": "QA_A",
+          "rule": "precedence assembly -> QA",
+          "evidence": "QA starts 28"
+        },
+        {
+          "from": "QA_A",
+          "to": "SHIP_A",
+          "rule": "QA release -> shipment ETA",
+          "evidence": "ETA 38; due 35; late 3"
+        },
+        {
+          "from": "INCIDENT",
+          "to": "CUT_B",
+          "rule": "scheduled capacity allocation",
+          "evidence": "cut starts 0, ends 8"
+        },
+        {
+          "from": "CUT_B",
+          "to": "ASSEMBLY_B",
+          "rule": "precedence cut -> assembly",
+          "evidence": "assembly starts 8"
+        },
+        {
+          "from": "ASSEMBLY_B",
+          "to": "QA_B",
+          "rule": "precedence assembly -> QA",
+          "evidence": "QA starts 14"
+        },
+        {
+          "from": "QA_B",
+          "to": "SHIP_B",
+          "rule": "QA release -> shipment ETA",
+          "evidence": "ETA 24; due 27; late 0"
+        }
+      ],
+      "source": "derived from deterministic stage schedule, not learned causality"
+    }
+  },
+  "p2": {
+    "sampleCount": 36,
+    "hitCount": 36,
+    "earliestCounterexample": {
+      "material": 1,
+      "repair": 0,
+      "dueB": 27,
+      "feasible": true,
+      "paradox": true,
+      "scoreLocal": 52,
+      "scoreGlobal": 3,
+      "reason": "LOCAL_GLOBAL_CONFLICT"
+    },
+    "firstMaterialBlock": {
+      "material": 0,
+      "repair": 0,
+      "dueB": 27,
+      "feasible": false,
+      "paradox": false,
+      "scoreLocal": 52,
+      "scoreGlobal": 3,
+      "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+    },
+    "hits": [
+      {
+        "material": 0,
+        "repair": 0,
+        "dueB": 27,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 52,
+        "scoreGlobal": 3,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 0,
+        "repair": 0,
+        "dueB": 23,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 68,
+        "scoreGlobal": 7,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 0,
+        "repair": 0,
+        "dueB": 19,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 84,
+        "scoreGlobal": 23,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 0,
+        "repair": 0,
+        "dueB": 15,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 100,
+        "scoreGlobal": 39,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 0,
+        "repair": 4,
+        "dueB": 27,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 68,
+        "scoreGlobal": 11,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 0,
+        "repair": 4,
+        "dueB": 23,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 84,
+        "scoreGlobal": 27,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 0,
+        "repair": 4,
+        "dueB": 19,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 100,
+        "scoreGlobal": 43,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 0,
+        "repair": 4,
+        "dueB": 15,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 116,
+        "scoreGlobal": 59,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 0,
+        "repair": 8,
+        "dueB": 27,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 87,
+        "scoreGlobal": 31,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 0,
+        "repair": 8,
+        "dueB": 23,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 103,
+        "scoreGlobal": 47,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 0,
+        "repair": 8,
+        "dueB": 19,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 119,
+        "scoreGlobal": 63,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 0,
+        "repair": 8,
+        "dueB": 15,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 135,
+        "scoreGlobal": 79,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 1,
+        "repair": 0,
+        "dueB": 27,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 52,
+        "scoreGlobal": 3,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 0,
+        "dueB": 27,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 52,
+        "scoreGlobal": 3,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 1,
+        "repair": 0,
+        "dueB": 23,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 68,
+        "scoreGlobal": 7,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 0,
+        "dueB": 23,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 68,
+        "scoreGlobal": 7,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 1,
+        "repair": 0,
+        "dueB": 19,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 84,
+        "scoreGlobal": 23,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 0,
+        "dueB": 19,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 84,
+        "scoreGlobal": 23,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 1,
+        "repair": 0,
+        "dueB": 15,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 100,
+        "scoreGlobal": 39,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 0,
+        "dueB": 15,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 100,
+        "scoreGlobal": 39,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 1,
+        "repair": 4,
+        "dueB": 27,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 68,
+        "scoreGlobal": 11,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 4,
+        "dueB": 27,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 68,
+        "scoreGlobal": 11,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 1,
+        "repair": 4,
+        "dueB": 23,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 84,
+        "scoreGlobal": 27,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 4,
+        "dueB": 23,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 84,
+        "scoreGlobal": 27,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 1,
+        "repair": 4,
+        "dueB": 19,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 100,
+        "scoreGlobal": 43,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 4,
+        "dueB": 19,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 100,
+        "scoreGlobal": 43,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 1,
+        "repair": 4,
+        "dueB": 15,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 116,
+        "scoreGlobal": 59,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 4,
+        "dueB": 15,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 116,
+        "scoreGlobal": 59,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 1,
+        "repair": 8,
+        "dueB": 27,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 87,
+        "scoreGlobal": 31,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 8,
+        "dueB": 27,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 87,
+        "scoreGlobal": 31,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 1,
+        "repair": 8,
+        "dueB": 23,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 103,
+        "scoreGlobal": 47,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 8,
+        "dueB": 23,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 103,
+        "scoreGlobal": 47,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 1,
+        "repair": 8,
+        "dueB": 19,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 119,
+        "scoreGlobal": 63,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 8,
+        "dueB": 19,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 119,
+        "scoreGlobal": 63,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 1,
+        "repair": 8,
+        "dueB": 15,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 135,
+        "scoreGlobal": 79,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 8,
+        "dueB": 15,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 135,
+        "scoreGlobal": 79,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      }
+    ],
+    "samples": [
+      {
+        "material": 0,
+        "repair": 0,
+        "dueB": 27,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 52,
+        "scoreGlobal": 3,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 0,
+        "repair": 0,
+        "dueB": 23,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 68,
+        "scoreGlobal": 7,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 0,
+        "repair": 0,
+        "dueB": 19,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 84,
+        "scoreGlobal": 23,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 0,
+        "repair": 0,
+        "dueB": 15,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 100,
+        "scoreGlobal": 39,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 0,
+        "repair": 4,
+        "dueB": 27,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 68,
+        "scoreGlobal": 11,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 0,
+        "repair": 4,
+        "dueB": 23,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 84,
+        "scoreGlobal": 27,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 0,
+        "repair": 4,
+        "dueB": 19,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 100,
+        "scoreGlobal": 43,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 0,
+        "repair": 4,
+        "dueB": 15,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 116,
+        "scoreGlobal": 59,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 0,
+        "repair": 8,
+        "dueB": 27,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 87,
+        "scoreGlobal": 31,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 0,
+        "repair": 8,
+        "dueB": 23,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 103,
+        "scoreGlobal": 47,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 0,
+        "repair": 8,
+        "dueB": 19,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 119,
+        "scoreGlobal": 63,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 0,
+        "repair": 8,
+        "dueB": 15,
+        "feasible": false,
+        "paradox": false,
+        "scoreLocal": 135,
+        "scoreGlobal": 79,
+        "reason": "PROVEN_ABSENT_MATERIAL_IN_SIMPLIFIED_MODEL"
+      },
+      {
+        "material": 1,
+        "repair": 0,
+        "dueB": 27,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 52,
+        "scoreGlobal": 3,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 1,
+        "repair": 0,
+        "dueB": 23,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 68,
+        "scoreGlobal": 7,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 1,
+        "repair": 0,
+        "dueB": 19,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 84,
+        "scoreGlobal": 23,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 1,
+        "repair": 0,
+        "dueB": 15,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 100,
+        "scoreGlobal": 39,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 1,
+        "repair": 4,
+        "dueB": 27,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 68,
+        "scoreGlobal": 11,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 1,
+        "repair": 4,
+        "dueB": 23,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 84,
+        "scoreGlobal": 27,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 1,
+        "repair": 4,
+        "dueB": 19,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 100,
+        "scoreGlobal": 43,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 1,
+        "repair": 4,
+        "dueB": 15,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 116,
+        "scoreGlobal": 59,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 1,
+        "repair": 8,
+        "dueB": 27,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 87,
+        "scoreGlobal": 31,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 1,
+        "repair": 8,
+        "dueB": 23,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 103,
+        "scoreGlobal": 47,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 1,
+        "repair": 8,
+        "dueB": 19,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 119,
+        "scoreGlobal": 63,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 1,
+        "repair": 8,
+        "dueB": 15,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 135,
+        "scoreGlobal": 79,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 0,
+        "dueB": 27,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 52,
+        "scoreGlobal": 3,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 0,
+        "dueB": 23,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 68,
+        "scoreGlobal": 7,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 0,
+        "dueB": 19,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 84,
+        "scoreGlobal": 23,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 0,
+        "dueB": 15,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 100,
+        "scoreGlobal": 39,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 4,
+        "dueB": 27,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 68,
+        "scoreGlobal": 11,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 4,
+        "dueB": 23,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 84,
+        "scoreGlobal": 27,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 4,
+        "dueB": 19,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 100,
+        "scoreGlobal": 43,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 4,
+        "dueB": 15,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 116,
+        "scoreGlobal": 59,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 8,
+        "dueB": 27,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 87,
+        "scoreGlobal": 31,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 8,
+        "dueB": 23,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 103,
+        "scoreGlobal": 47,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 8,
+        "dueB": 19,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 119,
+        "scoreGlobal": 63,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      },
+      {
+        "material": 2,
+        "repair": 8,
+        "dueB": 15,
+        "feasible": true,
+        "paradox": true,
+        "scoreLocal": 135,
+        "scoreGlobal": 79,
+        "reason": "LOCAL_GLOBAL_CONFLICT"
+      }
+    ],
+    "scope": "finite exhaustive grid; not a proof for all factories"
+  }
+}
