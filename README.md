@@ -1,84 +1,65 @@
-# FactoryPulse â€” Traceable Incident Decision Support (D3)
+# FactoryPulse — Hiểu tác động sự cố. Thử trước phương án. Quyết định có căn cứ.
 
-**DENSO Factory Hacks 2026 Â· D3 Â· Data Utilization**
+**DENSO Factory Hacks 2026 · D3 — Data / Chuẩn hóa & Khai thác**  
+**Trạng thái: prototype nghiên cứu chạy được, không phải hệ thống triển khai tại DENSO.**
 
-A lightweight, rule-based **synthetic experimental prototype** connecting order priorities/deadlines (ERP / Logic) with component stock (WMS), machine/processing state (MES / Manufacturing), quality-release approval (QA), and shipping ETA (TMS). Three incident families: machine downtime, shortage, quality hold.
+> **Một máy dừng, linh kiện giao muộn hoặc lô hàng bị giữ QA sẽ ảnh hưởng tới những công đoạn và đơn hàng nào? Nếu ưu tiên xử lý một đơn, liệu toàn bộ lịch sản xuất có trở nên tệ hơn?** FactoryPulse thử các phương án xử lý trên mô hình có ràng buộc, giúp người lập kế hoạch xem tác động và đánh đổi **trước khi ra quyết định**.
 
-**Critical disclosure:** No real DENSO data was supplied. All operational timings, intervention permissions, manual response times, order quantities, costs and savings are hypothetical. This is **NOT** a trained AI, a root-cause discovery system, a certified digital twin, a true SOP benchmark, nor demonstrated positive ROI at DENSO.
+## ▶ Dùng thử ngay — không cần clone để hiểu bài toán
 
-## Run immediately
+**Lựa chọn 1 — xem demo web (dễ nhất, dành cho BGK).** Đây là giao diện tương tác chạy bằng trình duyệt, dùng **dữ liệu giả lập** và mô hình xử lý sự cố dựa trên luật. Tại trang này, bạn có thể chọn tình huống **hỏng máy / thiếu vật tư / QA hold**, thay đổi thời gian thông tin đến, xem tác động đến đơn hàng, các đề xuất và xuất JSON. **Demo web này không phải giao diện chạy trực tiếp của CP-SAT, AI hay MAPF**; phần nghiên cứu đó có lệnh tái lập riêng ở dưới.
 
-```bash
-# Python 3, modern browser, Node.js 18+ for reproducible tests
-python3 -m http.server 8000
-# open http://localhost:8000
-npm test
-npm run benchmark
+**Windows:** Tải mã nguồn bằng **Code → Download ZIP**, giải nén, nhấp đúp `RUN_DEMO_WINDOWS.cmd` rồi mở `http://localhost:8000` (script sẽ cố mở trình duyệt tự động). Yêu cầu có Python được cài trên máy. Nếu muốn chạy thủ công:
+
+```powershell
+cd <thu-muc-repo>
+py -3 -m http.server 8000
+# Truy cập http://localhost:8000 trên trình duyệt
 ```
 
-No external runtime packages, model downloads, GPU or network APIs. CSS can fall back to system fonts when offline.
+**macOS / Linux:** mở terminal trong thư mục repo và chạy `python3 -m http.server 8000`, sau đó vào `http://localhost:8000`.
 
-## Main demonstration
+**Nếu BTC muốn xem mà không cài Python:** dùng bản **GitHub Pages** *nếu nhóm đã xuất bản và xác minh link hoạt động*. Hiện repository chưa xác nhận URL Pages công khai, vì vậy chúng tôi **không gắn link demo giả**. Cần có một URL đã triển khai trước khi nộp để BGK xem chỉ bằng một cú nhấp.
 
-1. Select machine downtime, material shortage or QA hold.
-2. Compare the same deterministic incident with two **identical optimization policies**. One has to retrieve cross-department data via a manual lookup delay; the other gets the integrated data at a feed-lag delay.
-3. Adjust manual lookup and feed delay. Make the manual lookup faster to see **FactoryPulse lose**.
-4. Change to stale data; the integrated policy refuses automatic recommendation and flags **VERIFY**.
-5. Change to restricted approval/capacity; a backup or substitute cannot be selected when unauthorized or infeasible.
-6. Inspect order ETA, decision time, model loss, and export the current trial JSON.
+➡ **[Hướng dẫn demo chi tiết, tình huống để bấm và kết quả mong đợi](docs/DEMO_GUIDE_VI.md)**
 
-## Benchmark result (synthetic, hand-authored)
+## FactoryPulse gồm những gì?
 
-`npm run benchmark` executes **24 stress cases** (8 each for 3 incident types) and writes `evidence/trials.csv`, `evidence/trials.json`, `evidence/summary.json`.
-
-- **5 cases** integrated policy lower modeled loss
-- **14 cases** tie
-- **2 cases** manual policy lower modeled loss
-- **3 cases** integrated feed refused recommendation due to stale input (`VERIFY`)
-- **0 invalid actions selected** under modeled hard constraints
-
-Do **not** quote the above as measured DENSO factory performance or a statistically representative success rate. The benchmark uses team-authored worlds and an evaluator that shares the declared model with the policy; it is neither an independent empirical gold standard nor a realistic manual-SOP timing study. In fact, average integrated loss **exceeds** average manual loss across all 24 cases in this toy experiment because stale feeds are penalized. This adverse result is disclosed, not hidden.
-
-## What is controlled (and what isn't)
-
-- Same complete physical world, permissible actions, safety constraints and decision rule for both policies.
-- Manipulated factor: *when reliable cross-department information becomes available*.
-- Only **known injected events** are traced; the demo does not infer unknown root causes.
-- Order lateness is calculated **once** at shipping ETA, not repeatedly at each dependency edge.
-- Quality/re-routing authorization and resource limits are enforced before action ranking.
-- A stale integrated feed outputs `VERIFY` and leaves the line unchanged until an operator intervenes (recovery workflow not yet implemented).
-- Scenario families are hand-specified, not representative field samples. No independent simulator validation or measured operator times.
-
-## Why pursue D3 at all?
-
-The official [2026 D3 challenge](https://densohackathon.vn/theme) requests **production-chain data linkage**, **impact/cause propagation** and **department-specific recommendations** over at least three scenarios. We demonstrate a constrained subset: event-to-order dependency tracing, order-level impact estimates and department-specific *advisory* outputs. Causal diagnosis and operational ROI remain future hypotheses.
-
-DENSO Manufacturing Vietnam has also publicly described a **Future Command Room** with consolidated factory data ([JMA, June 2026](https://imd.jma.or.jp/management/report/activity_report41.html)). We do not claim their current systems lack our capabilities. The pilot question is whether a constrained, auditable response-decision layer can add useful performance atop their current workflows.
-
-## Proposed 12-week pilot â€” contingent, not promised results
-
-| Weeks | Work | Gate |
+| Thành phần | Vai trò | Cách xem / kiểm chứng |
 |---|---|---|
-| 1â€“2 | Select one cell, data owner, MES/ERP/WMS keys and approval rules | Stop if no meaningful linkage can be established |
-| 3â€“5 | Replay historical incidents with observed outcomes and expert review | Stop if timestamps / data quality not adequate |
-| 6â€“9 | Shadow-mode decision comparison with **actual** SOP data and uncertainty estimates | Stop if decisions unsafe or no demonstrated value |
-| 10â€“12 | Optional controlled human-approved pilot, cost analysis and cross-line feasibility | Deploy only if quality, value and governance gates pass |
+| **Web demo D3** | Minh họa luồng thông tin liên phòng ban, tình huống sự cố và quyết định có ràng buộc | `RUN_DEMO_WINDOWS.cmd` → `http://localhost:8000` |
+| **CP-SAT rescheduling** | Thử lịch thay thế, tôn trọng năng lực máy, thứ tự công đoạn, thời điểm vật tư và QA; so sánh các chính sách LOCAL / C1 / C2 / B3 | [Hướng dẫn chạy nghiên cứu](docs/DEMO_GUIDE_VI.md#b-thử-nghiệm-có-mã-nguồn-không-phải-giao-diện-web) |
+| **AI Decision Risk Prediction** | Huấn luyện/đánh giá cảnh báo khi ưu tiên cục bộ có thể làm xấu độ trễ tổng thể | `factorypulse_experiment_v1/ai_swarm/risk.py`; kết quả còn yếu, chưa dùng tự quyết định |
+| **Heterogeneous AMR / MAPF** | Mô phỏng robot khác loại, lỗi robot, tìm đường có đặt chỗ theo thời gian, đánh giá xung đột và tiến triển nhiệm vụ | `ai_swarm/cooperative_fleet.py`, `cooperative_stress.py` |
+| **AMR → vật tư → CP-SAT → audit** | Kiểm tra một ca robot gặp lỗi làm đổi ETA vật tư và tác động lịch sản xuất | `ai_swarm/integration.py`; đây là pilot **một chuyến giao vật tư** |
+| **Kiểm toán độc lập & CI** | Đối chiếu tính hợp lệ lịch, báo cáo KPI, hồi quy các tình huống | [GitHub Actions](https://github.com/engmeo/profree/actions) |
 
-Metrics to collect: time-to-safe-decision, operator confirmation rate, eligible-action rate, missing data rate, order ETA error, manual effort, action cost, incident frequency and realized cost impact. **ROI cannot be computed credibly before these observations.**
+## Ba tình huống mà Ban giám khảo có thể theo dõi
 
-## Repo organization
+**1. Hỏng máy:** một tài nguyên dừng hoạt động → công đoạn bị ảnh hưởng → lịch các công đoạn khác phải điều chỉnh. Câu hỏi cần trả lời không chỉ là “máy nào hỏng?” mà còn là “đơn hàng nào có thể trễ và đổi lịch có hợp lệ không?”.
 
-- `src/worlds.mjs`: clearly disclosed synthetic data and possible actions.
-- `src/core.mjs`: queue/stock/QA-constrained schedule, decision policies, safety checks.
-- `src/app.mjs`, `src/style.css`, `index.html`: interactive demo.
-- `tests/core.test.mjs`: 17 automated verification tests.
-- `scripts/benchmark.mjs`: auditable paired stress cases.
-- `evidence/`: full trials and summary; includes negative outcomes.
-- `docs/`: red-team, method and submission outline.
+**2. Vật tư / AMR:** linh kiện chưa đến hoặc robot giao hàng hỏng → ETA cấp phát thay đổi → sản xuất không được bắt đầu trước khi vật tư sẵn sàng. Bản nghiên cứu đã kiểm thử cầu nối ETA → ràng buộc vật tư → CP-SAT với một nhiệm vụ giao hàng mô phỏng.
 
-**License:** MIT. The official DENSO theme and template remain the organizers' intellectual property.
+**3. QA hold / rework:** hàng chưa qua QA phải chờ; nếu cần làm lại, công đoạn và điều kiện sản xuất được bổ sung vào phương án lập lịch.
 
+**Điểm khác biệt:** thay vì chỉ tô đỏ cảnh báo, hệ thống nghiên cứu **thử lịch thay thế, kiểm tra ràng buộc và công khai các đánh đổi**; mọi quyết định sản xuất thực tế vẫn do con người phê duyệt.
 
-## AI / fleet research evidence and scope
+## Bằng chứng đã có — và giới hạn cần hiểu đúng
 
-FactoryPulse has a separate **experimental** AI risk study (not a deployment-ready trained AI controller), a synthetic heterogeneous fleet prototype, and a verified one-delivery AMR-material-CP-SAT integration test. Bounded 20-agent discrete-grid invariant checks are not evidence of physical AMR safety. [Evidence, reproduction and scope](factorypulse_experiment_v1/AI_SWARM_EVIDENCE_AND_LIMITS.md).
+- Các workflow chính trên `main` đã PASS ở bản chốt nghiên cứu (bao gồm CP-SAT, G4, AMR/material integration, AI study, MAPF). Có thể xem **từng lần chạy** tại [Actions](https://github.com/engmeo/profree/actions); kết quả CI không phải chứng nhận vận hành thực tế.
+- Benchmark lập lịch trên các instance công khai `mk01`–`mk03`, sự cố/vật tư/QA **được giả lập**. Một số ưu tiên cục bộ có thể làm xấu độ trễ toàn hệ thống.
+- AI đã được huấn luyện và kiểm tra trên instance giữ riêng; **độ chính xác hiện chưa đủ để tự động quyết định**. Đây là hướng nghiên cứu và cảnh báo bổ trợ.
+- MAPF có tiến triển đáng kể so với điều phối tham lam, nhưng vẫn có ca không giải được; kiểm toán chỉ xác nhận các bất biến **trong môi trường lưới rời rạc**.
+- **Không có dữ liệu vận hành DENSO, chưa đo ROI, chưa chứng minh cải thiện KPI thực địa và chưa chứng nhận an toàn robot vật lý.** Không trình bày các con số mô phỏng như kết quả tại DENSO.
+
+Chi tiết: [AI / AMR — bằng chứng và giới hạn](factorypulse_experiment_v1/AI_SWARM_EVIDENCE_AND_LIMITS.md) · [Kế hoạch thẩm định](docs/VALIDATION_GATES.md).
+
+## Nếu được chọn: thí điểm có kiểm soát trong 12 tuần
+
+Chọn một line và KPI thực tế → chuẩn hóa nguồn ERP/MES/WMS/QA → phát lại sự cố lịch sử → chạy shadow mode (không sửa lịch thật) → so với quy trình hiện tại → quyết định Go/No-Go. Đo **thời gian ra quyết định an toàn, tỷ lệ lịch hợp lệ, độ trễ đơn hàng, số lần đổi lịch, công sức và chi phí**. ROI chỉ được tính từ số liệu thu được trong pilot.
+
+## Người đánh giá / kỹ thuật viên muốn chạy lại toàn bộ?
+
+Xem [DEMO_GUIDE_VI.md](docs/DEMO_GUIDE_VI.md) — có lựa chọn **demo web 2 phút**, **kiểm thử Node.js**, **mô phỏng MAPF**, **pilot AMR → CP-SAT** và **tái tạo benchmark/AI**. Các phần nghiên cứu yêu cầu Python và thư viện riêng; không đồng nhất với demo web.
+
+**Mã nguồn:** [engmeo/profree](https://github.com/engmeo/profree) · **Giấy phép:** MIT (không bao gồm quyền sở hữu trí tuệ template BTC hoặc bộ dữ liệu bên thứ ba).
