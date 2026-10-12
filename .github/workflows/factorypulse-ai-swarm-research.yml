@@ -1,0 +1,43 @@
+name: FactoryPulse AI Risk + Heterogeneous Fleet Research
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'factorypulse_experiment_v1/ai_swarm/**'
+      - 'factorypulse_experiment_v1/tests/test_ai_swarm.py'
+      - '.github/workflows/factorypulse-ai-swarm-research.yml'
+jobs:
+  ai-swarm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: factorypulse_experiment_v1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements.txt scikit-learn==1.6.1 numpy==2.2.4
+      - name: Verify original simulation and AI module invariants
+        run: python -m unittest discover -s tests -p test_ai_swarm.py -v
+      - name: Verify public instances
+        run: python fetch_public_instances.py --names mk02 mk03
+      - name: Regenerate baseline original research evidence
+        run: |
+          python official_lab/expanded_matrix.py --data data/mk01.txt data/mk02.txt data/mk03.txt --out results/expanded_matrix --timeout 2
+          python official_lab/expanded_audit.py --out results/expanded_matrix --data data/mk01.txt data/mk02.txt data/mk03.txt
+      - name: Train and evaluate risk predictors only on held-out instances
+        run: |
+          mkdir -p results/ai_swarm
+          python ai_swarm/risk.py --results results/expanded_matrix/results.json --out results/ai_swarm/risk_report.json
+          python -m ai_swarm.fleet > results/ai_swarm/fleet_scenario.json
+          python -m ai_swarm.bridge > results/ai_swarm/fleet_material_bridge.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: factorypulse-ai-swarm-exploratory-evidence
+          path: |
+            factorypulse_experiment_v1/results/ai_swarm/**
+            factorypulse_experiment_v1/results/expanded_matrix/summary.json
+            factorypulse_experiment_v1/results/expanded_matrix/paired_comparisons.csv
