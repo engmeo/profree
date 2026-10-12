@@ -1,6 +1,6 @@
-# FactoryPulse — Traceable Incident Decision Support (D3)
+# FactoryPulse â€” Traceable Incident Decision Support (D3)
 
-**DENSO Factory Hacks 2026 · D3 · Data Utilization**
+**DENSO Factory Hacks 2026 Â· D3 Â· Data Utilization**
 
 A lightweight, rule-based **synthetic experimental prototype** connecting order priorities/deadlines (ERP / Logic) with component stock (WMS), machine/processing state (MES / Manufacturing), quality-release approval (QA), and shipping ETA (TMS). Three incident families: machine downtime, shortage, quality hold.
 
@@ -55,14 +55,14 @@ The official [2026 D3 challenge](https://densohackathon.vn/theme) requests **pro
 
 DENSO Manufacturing Vietnam has also publicly described a **Future Command Room** with consolidated factory data ([JMA, June 2026](https://imd.jma.or.jp/management/report/activity_report41.html)). We do not claim their current systems lack our capabilities. The pilot question is whether a constrained, auditable response-decision layer can add useful performance atop their current workflows.
 
-## Proposed 12-week pilot — contingent, not promised results
+## Proposed 12-week pilot â€” contingent, not promised results
 
 | Weeks | Work | Gate |
 |---|---|---|
-| 1–2 | Select one cell, data owner, MES/ERP/WMS keys and approval rules | Stop if no meaningful linkage can be established |
-| 3–5 | Replay historical incidents with observed outcomes and expert review | Stop if timestamps / data quality not adequate |
-| 6–9 | Shadow-mode decision comparison with **actual** SOP data and uncertainty estimates | Stop if decisions unsafe or no demonstrated value |
-| 10–12 | Optional controlled human-approved pilot, cost analysis and cross-line feasibility | Deploy only if quality, value and governance gates pass |
+| 1â€“2 | Select one cell, data owner, MES/ERP/WMS keys and approval rules | Stop if no meaningful linkage can be established |
+| 3â€“5 | Replay historical incidents with observed outcomes and expert review | Stop if timestamps / data quality not adequate |
+| 6â€“9 | Shadow-mode decision comparison with **actual** SOP data and uncertainty estimates | Stop if decisions unsafe or no demonstrated value |
+| 10â€“12 | Optional controlled human-approved pilot, cost analysis and cross-line feasibility | Deploy only if quality, value and governance gates pass |
 
 Metrics to collect: time-to-safe-decision, operator confirmation rate, eligible-action rate, missing data rate, order ETA error, manual effort, action cost, incident frequency and realized cost impact. **ROI cannot be computed credibly before these observations.**
 
@@ -77,3 +77,8 @@ Metrics to collect: time-to-safe-decision, operator confirmation rate, eligible-
 - `docs/`: red-team, method and submission outline.
 
 **License:** MIT. The official DENSO theme and template remain the organizers' intellectual property.
+
+
+## AI / fleet research evidence and scope
+
+FactoryPulse has a separate **experimental** AI risk study (not a deployment-ready trained AI controller), a synthetic heterogeneous fleet prototype, and a verified one-delivery AMR-material-CP-SAT integration test. Bounded 20-agent discrete-grid invariant checks are not evidence of physical AMR safety. [Evidence, reproduction and scope](factorypulse_experiment_v1/AI_SWARM_EVIDENCE_AND_LIMITS.md).

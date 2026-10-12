@@ -1,0 +1,213 @@
+{
+  "status": "EXPLORATORY_SMALL_SAMPLE",
+  "provenance": {
+    "schema": "FactoryPulse-expanded-predeclared-v1",
+    "git_sha": "68ab64389f2e66e6e7b835189aa11c93d958454d",
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "scenario_types": [
+      "machine",
+      "material",
+      "qa"
+    ],
+    "focus_selection": "first-and-last-job",
+    "seconds_per_solver_arm": 2.0,
+    "methods": [
+      "LOCAL",
+      "C1",
+      "C2",
+      "B3-B"
+    ],
+    "data_provenance": "Public Brandimarte FJSP; synthetic seeded machine/material/QA policies; not DENSO data",
+    "files": {
+      "mk01.txt": "449ada8093e03a84bf2255fa2a1673ccbc80cce7b82e855c5216533a330751ff",
+      "mk02.txt": "866c83e42be3ec3a96c6c4123e355f0b45e16d54da19a1bb21cf100cf6121bf3",
+      "mk03.txt": "0eb4b563ac5d635c0229769184ab8959f24cc78c725a1277a1e6a2d7bc7f4228"
+    }
+  },
+  "validation": "leave-one-instance-out; feature extraction excludes arm output",
+  "valid_pairs": 46,
+  "excluded_nonpaired": 8,
+  "positive": 16,
+  "features": [
+    "machine_failure",
+    "event_time",
+    "event_duration",
+    "material_shortage",
+    "material_delay",
+    "qa_holds",
+    "qa_latest_hold",
+    "n_jobs",
+    "focus_index_fraction",
+    "due_focus_margin",
+    "focus_weight",
+    "priority_mean",
+    "base_makespan",
+    "base_total_duration",
+    "base_utilization_proxy",
+    "focus_base_completion",
+    "base_weighted_tardiness"
+  ],
+  "folds": [
+    {
+      "holdout_instance": "mk01",
+      "train_size": 30,
+      "test_size": 16,
+      "train_positive": 11,
+      "test_positive": 5,
+      "metrics": {
+        "dummy": {
+          "pr_auc": 0.3125,
+          "precision_at_0_5": 0.0,
+          "recall_at_0_5": 0.0,
+          "f1_at_0_5": 0.0,
+          "false_negatives": 5,
+          "n": 16
+        },
+        "logistic": {
+          "pr_auc": 0.2102056277056277,
+          "precision_at_0_5": 0.0,
+          "recall_at_0_5": 0.0,
+          "f1_at_0_5": 0.0,
+          "false_negatives": 5,
+          "n": 16
+        },
+        "forest": {
+          "pr_auc": 0.20945970695970695,
+          "precision_at_0_5": 0.0,
+          "recall_at_0_5": 0.0,
+          "f1_at_0_5": 0.0,
+          "false_negatives": 5,
+          "n": 16
+        }
+      }
+    },
+    {
+      "holdout_instance": "mk02",
+      "train_size": 32,
+      "test_size": 14,
+      "train_positive": 11,
+      "test_positive": 5,
+      "metrics": {
+        "dummy": {
+          "pr_auc": 0.35714285714285715,
+          "precision_at_0_5": 0.0,
+          "recall_at_0_5": 0.0,
+          "f1_at_0_5": 0.0,
+          "false_negatives": 5,
+          "n": 14
+        },
+        "logistic": {
+          "pr_auc": 0.2524114774114774,
+          "precision_at_0_5": 0.0,
+          "recall_at_0_5": 0.0,
+          "f1_at_0_5": 0.0,
+          "false_negatives": 5,
+          "n": 14
+        },
+        "forest": {
+          "pr_auc": 0.26208513708513703,
+          "precision_at_0_5": 0.0,
+          "recall_at_0_5": 0.0,
+          "f1_at_0_5": 0.0,
+          "false_negatives": 5,
+          "n": 14
+        }
+      }
+    },
+    {
+      "holdout_instance": "mk03",
+      "train_size": 30,
+      "test_size": 16,
+      "train_positive": 10,
+      "test_positive": 6,
+      "metrics": {
+        "dummy": {
+          "pr_auc": 0.375,
+          "precision_at_0_5": 0.0,
+          "recall_at_0_5": 0.0,
+          "f1_at_0_5": 0.0,
+          "false_negatives": 6,
+          "n": 16
+        },
+        "logistic": {
+          "pr_auc": 0.75,
+          "precision_at_0_5": 0.46153846153846156,
+          "recall_at_0_5": 1.0,
+          "f1_at_0_5": 0.631578947368421,
+          "false_negatives": 0,
+          "n": 16
+        },
+        "forest": {
+          "pr_auc": 0.32318376068376065,
+          "precision_at_0_5": 0.18181818181818182,
+          "recall_at_0_5": 0.3333333333333333,
+          "f1_at_0_5": 0.23529411764705882,
+          "false_negatives": 4,
+          "n": 16
+        }
+      }
+    }
+  ],
+  "pooled_out_of_instance": {
+    "dummy": {
+      "pr_auc": 0.3322576992753623,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "false_negatives": 16,
+      "confusion_matrix": [
+        [
+          30,
+          0
+        ],
+        [
+          16,
+          0
+        ]
+      ]
+    },
+    "logistic": {
+      "pr_auc": 0.46033533594358234,
+      "precision": 0.23076923076923078,
+      "recall": 0.375,
+      "f1": 0.2857142857142857,
+      "false_negatives": 10,
+      "confusion_matrix": [
+        [
+          10,
+          20
+        ],
+        [
+          10,
+          6
+        ]
+      ]
+    },
+    "forest": {
+      "pr_auc": 0.2595686133434358,
+      "precision": 0.10526315789473684,
+      "recall": 0.125,
+      "f1": 0.11428571428571428,
+      "false_negatives": 14,
+      "confusion_matrix": [
+        [
+          13,
+          17
+        ],
+        [
+          14,
+          2
+        ]
+      ]
+    }
+  },
+  "limitations": [
+    "54 predeclared cases are insufficient to claim deployment-ready predictive AI",
+    "synthetic targets are simulator-specific, not observed DENSO outcomes",
+    "Do not deploy automated decisions; shadow-mode validation and broader data needed"
+  ]
+}
