@@ -1,3 +1,6 @@
+> **LƯU Ý CẬP NHẬT (2026-10-12):** Một số mô tả trạng thái ban đầu bên dưới (ví dụ “CP-SAT chưa chạy”, “B3 chưa có”) là nhật ký lịch sử, **không phản ánh mã `main` hiện tại**. CP-SAT, AI Risk, AMR→vật tư và Cooperative MAPF đã được bổ sung cùng workflow CI. Để biết phạm vi thực tế và lệnh chạy hiện hành, đọc [README chính](../README.md), [Demo Hub](../demo_hub.html), [bản đồ module](../docs/REPOSITORY_MAP_VI.md) và [hướng dẫn chạy](../docs/DEMO_GUIDE_VI.md). Nội dung lịch sử được giữ nguyên để bảo toàn nguồn gốc thí nghiệm; không dùng đoạn cũ làm mô tả sản phẩm mới.
+
+
 # FactoryPulse D3 — Research evidence / Bằng chứng nghiên cứu
 
 > **Research only · Not a deployed DENSO system.** This repository tests whether selective dynamic rescheduling has any advantage over strong baselines. It does **not** claim to reduce actual factory costs or improve DENSO operations.
