@@ -5,6 +5,18 @@
 
 > **Một máy dừng, linh kiện giao muộn hoặc lô hàng bị giữ QA sẽ ảnh hưởng tới những công đoạn và đơn hàng nào? Nếu ưu tiên xử lý một đơn, liệu toàn bộ lịch sản xuất có trở nên tệ hơn?** FactoryPulse thử các phương án xử lý trên mô hình có ràng buộc, giúp người lập kế hoạch xem tác động và đánh đổi **trước khi ra quyết định**.
 
+## Trung tâm Demo — điểm bắt đầu dành cho BTC
+
+**[Mở Demo Hub](demo_hub.html)** sau khi chạy `RUN_DEMO_WINDOWS.cmd` hoặc `py -3 -m http.server 8000`. Truy cập **http://localhost:8000/demo_hub.html** để chọn nhanh:
+
+- **Dashboard:** tình huống, ETA và tác động đến đơn hàng.
+- **Nhà máy 2D:** lan truyền ảnh hưởng giữa các trạm.
+- **Nhà máy 3D CSS:** cùng logic JS dưới góc nhìn 3D tương tác.
+- **Resilience Lab:** cho thấy ưu tiên cục bộ có thể phản tác dụng.
+- **Official CP-SAT / AI / MAPF:** mô-đun nghiên cứu độc lập, có lệnh chạy trong tài liệu kỹ thuật; không tự chạy khi bấm demo 2D/3D.
+
+Xem [bản đồ repository và giới hạn tích hợp](docs/REPOSITORY_MAP_VI.md) nếu muốn biết mỗi giao diện dùng engine nào. Mọi dữ liệu demo đều tổng hợp, không đại diện hiệu quả vận hành tại DENSO.
+
 ## ▶ Dùng thử ngay — không cần clone để hiểu bài toán
 
 **Lựa chọn 1 — xem demo web (dễ nhất, dành cho BGK).** Đây là giao diện tương tác chạy bằng trình duyệt, dùng **dữ liệu giả lập** và mô hình xử lý sự cố dựa trên luật. Tại trang này, bạn có thể chọn tình huống **hỏng máy / thiếu vật tư / QA hold**, thay đổi thời gian thông tin đến, xem tác động đến đơn hàng, các đề xuất và xuất JSON. **Demo web này không phải giao diện chạy trực tiếp của CP-SAT, AI hay MAPF**; phần nghiên cứu đó có lệnh tái lập riêng ở dưới.
