@@ -1,0 +1,44 @@
+name: FactoryPulse Robust Evidence and Fleet Stress
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'factorypulse_experiment_v1/ai_swarm/robust_evidence.py'
+      - 'factorypulse_experiment_v1/ai_swarm/fleet_stress.py'
+      - 'factorypulse_experiment_v1/tests/test_robust_evidence.py'
+      - '.github/workflows/factorypulse-robust-evidence.yml'
+jobs:
+  robustness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    defaults:
+      run:
+        working-directory: factorypulse_experiment_v1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned experiment dependencies
+        run: python -m pip install -r requirements.txt scikit-learn==1.6.1 numpy==2.2.4
+      - name: Run regression and independent safety-history auditor tests
+        run: python -m unittest discover -s tests -p test_robust_evidence.py -v
+      - name: Download hashed public job-shop instances
+        run: python fetch_public_instances.py --names mk02 mk03
+      - name: Reproduce held-out dataset and solver audit
+        run: |
+          python official_lab/expanded_matrix.py --data data/mk01.txt data/mk02.txt data/mk03.txt --out results/expanded_matrix --timeout 2
+          python official_lab/expanded_audit.py --out results/expanded_matrix --data data/mk01.txt data/mk02.txt data/mk03.txt
+      - name: Evaluate seeds, budgets, Brier and instance-cluster bootstrap
+        run: |
+          mkdir -p results/robust_evidence
+          python -m ai_swarm.robust_evidence --results results/expanded_matrix/results.json --out results/robust_evidence/risk_robust.json
+      - name: Run 100 seed 20-agent discrete-grid stress study
+        run: python -m ai_swarm.fleet_stress --seeds 100 --out results/robust_evidence/fleet_stress.json
+      - name: Upload reproducible reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: factorypulse-robust-research-evidence
+          path: factorypulse_experiment_v1/results/robust_evidence/*.json
+          if-no-files-found: warn
