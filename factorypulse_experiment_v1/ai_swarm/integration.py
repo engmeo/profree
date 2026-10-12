@@ -26,7 +26,7 @@ def run_integrated_pilot(*, timeout: float = 8.0, seed: int = 11):
 
     inst = {'machines': 2, 'jobs': [[{0: 4}, {1: 3}], [{1: 5}]]}
     original = greedy(inst)
-    state = scenario_state(inst, original, t=0, machine=0, duration=0, has_failure=False)
+    state = scenario_state(inst, original, t=0, machine=0, duration=1, has_failure=False)
     task_sim = scenario()
     if task_sim['baseline']['status'] != 'ASSIGNED' or task_sim['recovery']['status'] != 'ASSIGNED':
         raise AssertionError('fleet could not supply paired arrivals')
