@@ -1,0 +1,40 @@
+name: FactoryPulse Cooperative Grid MAPF Progress
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'factorypulse_experiment_v1/ai_swarm/cooperative_*.py'
+      - 'factorypulse_experiment_v1/tests/test_cooperative_fleet.py'
+      - '.github/workflows/factorypulse-cooperative-mapf.yml'
+jobs:
+  cooperative-grid:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: factorypulse_experiment_v1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate cooperative planner and safety invariants
+        run: python -m unittest discover -s tests -p test_cooperative_fleet.py -v
+      - name: Compare mission progress on fixed 100-seed 20-agent benchmark
+        run: |
+          mkdir -p results/cooperative_mapf
+          python -m ai_swarm.cooperative_stress --seeds 100 --out results/cooperative_mapf/stress.json
+      - name: Acceptance - minimum 90 percent complete, zero audited violations
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open('results/cooperative_mapf/stress.json'))
+          assert r['cases']==100 and r['robots_per_case']==20
+          assert r['complete_scenarios']>=90, r
+          assert r['independent_audit_failed_scenarios']==0, r
+          print('COOPERATIVE_MAPF_ACCEPTANCE_PASS',r['complete_scenarios'],'/100')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: factorypulse-cooperative-mapf-stress
+          path: factorypulse_experiment_v1/results/cooperative_mapf/stress.json
